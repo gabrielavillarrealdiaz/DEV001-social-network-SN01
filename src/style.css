@@ -378,3 +378,10 @@ hr {
   color: white;
   font-weight: 700;
 }
+
+.gif{
+  display: flex;
+  justify-content: center;
+  padding: 5%;
+  width: 200px;
+}
