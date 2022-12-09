@@ -99,11 +99,9 @@ export const viewForHome = () => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
-        // const email = error.customData.email;
-        // The AuthCredential type that was used.
         const credentialError = GoogleAuthProvider.credentialFromError(error);
-        alert(errorCode, errorMessage, credentialError);
+        // eslint-disable-next-line no-unused-expressions
+        errorCode || errorMessage || credentialError ? alert('there is a problem, try again') : false;
       });
     console.log('google auth');
   });
@@ -145,14 +143,9 @@ export const viewForHome = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
-        if (error.code === AuthErrorCodes.INVALID_PASSWORD
-        || error.code === AuthErrorCodes.USER_DELETED) {
-          textForAlert.innerHTML = 'contraseña incorrecta';
-          console.log('El E-mail o la contraseña son incorrectos');
-        } else {
-          console.log('no has ingresado nada');
-        }
+        // eslint-disable-next-line no-unused-expressions
+        error.code === AuthErrorCodes.INVALID_PASSWORD
+        || error.code === AuthErrorCodes.USER_DELETED ? textForAlert.innerHTML = 'contraseña incorrecta' : false;
       });
   });
 

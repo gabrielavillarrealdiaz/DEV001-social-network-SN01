@@ -147,12 +147,8 @@ export const viewForPost = () => {
               const postId = dataset.id;
               console.log(dataset.id);
               if (doc[1].id === postId) {
-                alert('confirm?');
-                // eslint-disable-next-line no-restricted-globals
-                // const result = confirm('Delete post??');
-                // //if (result === true) {
-                //   functionDeleteEachPost(dataset.id);}
-                functionDeleteEachPost(postId);
+                // eslint-disable-next-line no-restricted-globals, no-unused-expressions
+                confirm('Confirm delete post?') ? functionDeleteEachPost(postId) : false;
               }
             });
           });
@@ -215,16 +211,16 @@ export const viewForPost = () => {
                     conteinerOfEditPost.classList.add('textEditPostDisplayNone');
                   });
                 });
-
-                /* aqui se llama boton cerrar y se pasa evento para poner display None
                 buttonCloseModal.addEventListener('click', () => {
+                  divHeaderEditPost.classList.remove('divHeaderPost');
+                  divHeaderEditPost.classList.add('divHeaderPostDisplayNone');
                   textAreaForEdit.classList.remove('textEditPost');
                   textAreaForEdit.classList.add('textEditPostDisplayNone');
                   buttonSaveNewPost.classList.remove('buttonSavePostNew');
                   buttonSaveNewPost.classList.add('buttonSavePostNewDisplayNone');
-                  buttonCloseModal.classList.remove('buttonCloseEditTextArea');
-                  buttonCloseModal.classList.add('buttonCloseEditTextAreaDisplayNone');
-                }); */
+                  conteinerOfEditPost.classList.remove('containerEditPost');
+                  conteinerOfEditPost.classList.add('textEditPostDisplayNone');
+                });
               } // FIN IF de edit
             });
           });
@@ -263,6 +259,8 @@ export const viewForPost = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          // eslint-disable-next-line no-unused-expressions
+          errorCode || errorMessage ? alert('there is a problem, try again') : false;
           console.log(errorCode, errorMessage);
         });
     } else {
