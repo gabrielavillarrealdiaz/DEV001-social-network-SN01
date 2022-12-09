@@ -152,7 +152,7 @@
 .text1 {
   font-size: 1em;
   font-weight: 500;
-  color: #03002b;;
+  color: #03002b;
   text-decoration: none;
   z-index: 50;
 }
@@ -164,7 +164,7 @@
 }
 
 hr {
-  border: 1px  #81a8c9;;
+  border: 1px  #81a8c9;
   width: 22vw;
   z-index: 50;
   border-style: solid;
@@ -223,7 +223,7 @@ hr {
 
 
 .login2 p {
-  color:  #03002b;;
+  color:  #03002b;
   font-weight: 500;
   font-size: 1em;
   margin-top: -1.3vh;
@@ -382,7 +382,6 @@ hr {
   color: #ffffff;
   height: 6vh;
   margin: 0;
-  transition: 0.25s;
   width: 15vmax;
   font-weight: 600;
   z-index: 100;
@@ -406,7 +405,6 @@ hr {
   color: #ffffff;
   height: 6vh;
   margin: 0;
-  transition: 0.25s;
   width: 15vmax;
   font-weight: 600;
   z-index: 100;
@@ -421,13 +419,6 @@ hr {
 
 .imgForRegisterLandPage{
   display: none;
-}
-
-
-.red{
-  border-color: #d41010;
-  border-style: solid;
-  border-width: 0.2rem; 
 }
 
 #secretText{
@@ -512,8 +503,9 @@ z-index: 0;
     animation-name: bounce;
     animation-duration: 8s;
     animation-iteration-count: infinite;
+    bottom: 70%
   }
-  
+
   .mainBox {
     background-color: #ffffff;
     border-radius: 2vh;
@@ -553,7 +545,7 @@ z-index: 0;
   }
 
   hr {
-    border: 1.3px  #81a8c9;;
+    border: 1.3px  #81a8c9;
     width: 10vw;
     border-style: solid;
   }
@@ -595,11 +587,9 @@ z-index: 0;
     z-index: 200;
     width: 50vh;
     bottom: 2vh;
-
     animation-name: bounce;
     animation-duration: 8s;
     animation-iteration-count: infinite;
-    z-index: 0;
   }
 
   @keyframes bounce {
@@ -616,9 +606,7 @@ z-index: 0;
     }
   }
   
-  .imgFooter {
-    bottom: 70%
-  }
+  
 
   .doggy{
     position:absolute;

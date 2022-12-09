@@ -13,6 +13,7 @@ export const viewForProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   // Crea constante userProfile que guarda usuario desde localStorage con nombre 'userProfile'
   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+  console.log(userProfile);
   let photo = userProfile.photoURL;
   const profileDiv = document.createElement('div');
   profileDiv.classList.add('allViewForProfile');
@@ -27,9 +28,9 @@ export const viewForProfile = () => {
       </label>
 
       <ul class="menu__box">
-        <li><p id="postSelect" class="menu__item">Posts</p></li>
+        <li><button id="postSelect" class="menu__item">Posts</button></li>
         <li><p id= "profileSelect" class="menu__item">Me</p></li>
-        <li><p class="menu__item" id='closeSession'>Close</p></li>
+        <li><p class="menu__item" id="closeSession">Close</p></li>
       </ul>
     </div>
 
@@ -69,6 +70,7 @@ export const viewForProfile = () => {
   const post = profileDiv.querySelector('#postSelect');
   // Escucha evento 'click' en constante post y realiza cambio de hash con función changeHash
   post.addEventListener('click', () => {
+    console.log('CLICK!');
     changeHash('#/post');
   });
   // Input con type file y ID updatePhoto

@@ -39,7 +39,7 @@ export const saveDataFromUsers = async (name, country, usersUid, email, password
   const userFromFirestore = await getDoc(docs);
   console.log(userFromFirestore.data(usersUid).user);
   // localStorage.setItem('user', userFromFirestore.data(usersUid));
-  console.log(userFromFirestore.data(usersUid));
+  // console.log(userFromFirestore.data(usersUid));
 };
 
 /**
@@ -107,7 +107,7 @@ export const savePost = (textOfEachPost, nameOfUser, usersId, creationDate, like
   addDoc(collection(db, 'posts'), {
     textOfEachPost, nameOfUser, usersId, creationDate, likes,
   });
-  console.log('base datos');
+  // console.log('base datos');
 };
 
 /**

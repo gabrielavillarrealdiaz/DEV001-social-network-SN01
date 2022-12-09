@@ -11,79 +11,43 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  /*  setDoc,
-  db,
-  doc,
-  getFirestore, */
+  updateProfile,
+  signOut,
 } from 'firebase/auth';
-// import {
-
-// } from 'firebase/firestore';
 import {
-  submitRegister, sendEmail, forgotPassword, logInHome, googleLogIn, saveDataFromUsers,
+  addDoc,
+  getDoc,
+  onSnapshot,
+  deleteDoc,
+  updateDoc,
+  collection,
+  // db,
+} from 'firebase/firestore';
+
+import {
+  submitRegister,
+  sendEmail,
+  forgotPassword,
+  logInHome,
+  googleLogIn,
+  updateInfo,
+  signOutUser,
+  updatePhoto,
+  savePost,
+  getSavePosts,
+  getPost,
+  getUser,
+  functionDeleteEachPost,
+  updatePost,
+  updateLikes,
+  changeHash,
 } from '../src/lib/index';
-import { viewForRegister } from '../src/components/register';
+
 import { viewForHome } from '../src/components/home';
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
 
-// Inicio Testeo a viewForRegister
-describe('viewForRegister', () => {
-  it('debería ser una función', () => {
-    expect(typeof viewForRegister).toBe('function');
-  });
-  it('Tenemos boton de return', () => {
-    const registerDiv = viewForRegister();
-    const returnToHome = registerDiv.querySelector('#return');
-    expect(returnToHome.outerHTML).toBe('<button class="return" id="return">Return</button>');
-  });
-  it('Tenemos boton de submit', () => {
-    const bodyRegister = viewForRegister();
-    const botonSubmit = bodyRegister.querySelector('#signUp');
-    expect(botonSubmit.outerHTML).toBe('<button class="buttonSignUp" id="signUp">Sign Up</button>');
-  });
-  it('cambia de hash y retorna a home', () => {
-    const registerDiv = viewForRegister();
-    // const changeHash = jest.fn();
-    // changeHash();
-    viewForRegister();
-    const buttonReturnToHome = registerDiv.querySelector('#return');
-    expect(window.location.hash).toBe('#/register');
-    buttonReturnToHome.click();
-    expect(window.location.hash).toBe('#/');
-  });
-  it('se llama a changeHash desde botón return', () => {
-    const changeHash = jest.fn();
-    changeHash();
-    const registerDiv = viewForRegister();
-    const buttonReturnToHome = registerDiv.querySelector('#return');
-    buttonReturnToHome.click();
-    expect(changeHash).toHaveBeenCalledTimes(1);
-    expect(window.location.hash).toBe('#/');
-  });
-  it('contraseña y confirmación no son iguales', () => {
-    const registerDiv = viewForRegister();
-    let password = registerDiv.querySelector('#signUpPassword').value;
-    let passwordConf = registerDiv.querySelector('#signUpPasswordConf').value;
-    password = 'holahola';
-    passwordConf = 'holasholas';
-    const buttonSignUp = registerDiv.querySelector('#signUp');
-    buttonSignUp.click();
-    expect(password !== passwordConf).toBe(true); // preguntar si esta bien :(
-  });
-
-  describe('elemento .root existe en el HTML', () => {
-    beforeAll(() => {
-      document.body.innerHTML = '<div class="root" id="root"></div>';
-    });
-    it('debería existir elemento .root', () => {
-      const bodyRoot = document.getElementById('root');
-      expect(bodyRoot.outerHTML).toBe('<div class="root" id="root"></div>');
-    });
-  });
-});
-// Fin testeo viewForRegister
 // Inicio testeo función submitRegister()
 describe('submitRegister', () => {
   it('debería ser una función', () => {
@@ -99,11 +63,11 @@ describe('submitRegister', () => {
   });
 });
 
-describe('envioCorreoVerificacion', () => {
+describe('sendEmail', () => {
   it('debería ser una función', () => {
     expect(typeof sendEmail).toBe('function');
   });
-  it('deberia llamar correctamente sendEmailVerification', () => {
+  it('sendEmail llama correctamente a sendEmailVerification', () => {
     sendEmailVerification.mockImplementationOnce((currentUser) => {
       expect(currentUser).toBe('testUser');
       // return Promise.resolve();
@@ -129,8 +93,7 @@ describe('forgotPassword', () => {
   });
 });
 // test de logInHome
-// describe('logInHome');
-
+// test de logInHome;
 describe('logInHome', () => {
   it('debería ser una función', () => {
     expect(typeof logInHome).toBe('function');
@@ -152,7 +115,7 @@ describe('logInHome', () => {
   });
 });
 
-// viewForHome
+// test de vista viewForHome
 describe('viewForHome', () => {
   it('debería ser una función', () => {
     expect(typeof logInHome).toBe('function');
@@ -178,18 +141,25 @@ describe('viewForHome', () => {
     expect(buttonGoogleLogIn.outerHTML).toBe('<img class="iconoGoogle" id="googleIcon" src="/img/google.svg" alt="google">');
   });
   // POR REVISAR
-  it('cambia de hash y retorna a login', () => {
+  /*
+  it('cambia de hash y retorna a profile', async () => {
     const homeDiv = viewForHome();
     const buttonReturnToLogin = homeDiv.querySelector('#buttonSignIn');
-    console.log(window.location.hash);
-    expect(window.location.hash).toBe('#/');
+    // viewForHome();
+    // console.log(window.location.hash);
+    // expect(window.location.hash).toBe('#/');
     // const clickEvent = new Event('click');
     buttonReturnToLogin.click();
-    return Promise.resolve(expect(window.location.hash).toBe('#/profile'));
+    getUser.mockImplementationOnce((userCredential) => {
+      expect(userCredential).toBe('abcdefg');
+      return Promise.resolve(changeHash('#/profile'));
+    });
+    getUser('abcdefg');
   });
+  */
 });
 
-// aqui va el test a logIn with Google
+// test a logIn with Google
 describe('googleLogIn', () => {
   it('debería ser una función', () => {
     expect(typeof googleLogIn).toBe('function');
@@ -209,6 +179,134 @@ describe('googleLogIn', () => {
   });
   // ----------------------Fin prueba 2----------------
 });
+
+// test función updateInfo
+
+describe('updateInfo', () => {
+  it('debería ser una función', () => {
+    expect(typeof updateInfo).toBe('function');
+  });
+  it('deberia llamar correctamente  updateProfile', () => {
+    updateInfo(updateProfile);
+    expect(updateProfile).toBeCalled();
+  });
+});
+// test funcion signOutUser
+describe('signOutUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof signOutUser).toBe('function');
+  });
+  it('deberia llamar correctamente signOut', () => {
+    signOutUser(signOut);
+    expect(signOut).toBeCalled();
+  });
+});
+
+// test funcion updatePhoto
+describe('updatePhoto', () => {
+  it('debería ser una función', () => {
+    expect(typeof updatePhoto).toBe('function');
+  });
+  it('deberia llamar correctamente updateProfile', () => {
+    updatePhoto(updateProfile);
+    expect(updateProfile).toBeCalled();
+  });
+});
+
+// test función savePost NO PASA
+describe('savePost', () => {
+  it('debería ser una función', () => {
+    expect(typeof savePost).toBe('function');
+  });
+  it('deberia llamar correctamente addDoc', () => {
+    savePost(addDoc);
+    expect(addDoc).toBeCalled();
+  });
+});
+
+// test funcion changeHash
+describe('changeHash', () => {
+  it('debería ser una función', () => {
+    expect(typeof changeHash).toBe('function');
+  });
+  it('deberia llamar correctamente updateProfile', () => {
+    updatePhoto(updateProfile);
+    expect(updateProfile).toBeCalled();
+  });
+});
+
+// test getSavePosts
+describe('getSavePosts', () => {
+  it('debería ser una función', () => {
+    expect(typeof getSavePosts).toBe('function');
+  });
+  it('deberia llamar correctamente getDoc', () => {
+    getSavePosts(getDoc);
+    expect(getDoc).toBeCalled();
+  });
+});
+
+// test getPost
+describe('getPost', () => {
+  it('debería ser una función', () => {
+    expect(typeof getPost).toBe('function');
+  });
+  it('deberia llamar correctamente onSnapshot', () => {
+    getPost(onSnapshot);
+    expect(onSnapshot).toBeCalled();
+  });
+});
+
+// collection
+describe('collection', () => {
+  it('debería ser una función', () => {
+    expect(typeof collection).toBe('function');
+  });
+});
+// test getUser
+describe('getUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof getUser).toBe('function');
+  });
+  it('deberia llamar correctamente getDoc', () => {
+    getUser(getDoc);
+    expect(getDoc).toBeCalled();
+  });
+});
+
+// tesr functionDeleteEachPost
+describe('functionDeleteEachPost', () => {
+  it('debería ser una función', () => {
+    expect(typeof functionDeleteEachPost).toBe('function');
+  });
+  it('deberia llamar correctamente deleteDoc', () => {
+    functionDeleteEachPost(deleteDoc);
+    expect(deleteDoc).toBeCalled();
+  });
+});
+
+// test updatePost
+describe('updatePost', () => {
+  it('debería ser una función', () => {
+    expect(typeof updatePost).toBe('function');
+  });
+  it('deberia llamar correctamente updateDoc', () => {
+    updatePost(updateDoc);
+    expect(updateDoc).toBeCalled();
+  });
+});
+
+// test updateLikes
+describe('updateLikes', () => {
+  it('debería ser una función', () => {
+    expect(typeof updateLikes).toBe('function');
+  });
+  it('deberia llamar correctamente updateDoc', () => {
+    updateLikes(updateDoc);
+    expect(updateDoc).toBeCalled();
+  });
+});
+
 /* // saveDataFromUsers
 describe('saveDataFromUsers', () => {
   it('debería ser una función', () => {
