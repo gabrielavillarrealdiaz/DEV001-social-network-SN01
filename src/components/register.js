@@ -85,7 +85,6 @@ export const viewForRegister = () => {
       textMessageSecret.innerHTML = 'Fill the empty inputs!!!';
       return textMessageSecret;
     }
-    console.log('hola como estas');
     submitRegister(email, password, name, country)
       .then((userCredential) => {
         const usersUid = userCredential.user.uid;
@@ -98,7 +97,6 @@ export const viewForRegister = () => {
             alert('mail verification sent!');
             changeHash('#/');
           });
-        console.log(currentUser.displayName);
       })
       // eslint-disable-next-line consistent-return
       .catch((error) => {

@@ -14,8 +14,7 @@ import {
   GoogleAuthProvider,
   updateProfile,
   signOut,
-  submitRegister,
-  AuthErrorCodes,
+ // AuthErrorCodes,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -53,13 +52,18 @@ import {
   refFunction,
   uploadToStorage,
   updateUsers,
+  submitRegister,
 } from '../src/lib/index';
 
+// import { submitRegister } from '../src/lib/index';
 import { viewForHome } from '../src/components/home';
+import { viewForRegister } from '../src/components/register';
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
 jest.mock('firebase/storage');
+jest.mock('../src/lib/index.js');
+
 // Inicio testeo función submitRegister()
 describe('submitRegister', () => {
   it('debería ser una función', () => {
@@ -73,55 +77,55 @@ describe('submitRegister', () => {
     });
     submitRegister('test@test.test', '123');
   });
-  // it('deberia registrarse correctamente', () => {
-  //   // const registerDiv = viewForRegister();
-  //   // submitRegister.mockImplementationOnce((email) => {
-  //   // registerDiv.querySelector('#signUpPassword').value = 'holahola';
-  //   // // registerDiv.querySelector('#signUpPasswordConf').value = 'holahoAAAla';
-  //   // registerDiv.querySelector('#signUpCountry').value = 'mexico';
-  //   // registerDiv.querySelector('#signUpEmail').value = 'gabrielaavd@gmail.com';
-  //   // registerDiv.querySelector('#fName').value = 'Gabriela';
-  //   // password = registerDiv.querySelector('#signUpPassword').value;
-  //   // // const passwordConf = registerDiv.querySelector('#signUpPasswordConf').value;
-  //   // name = registerDiv.querySelector('#fName').value;
-  //   // // eslint-disable-next-line no-unused-vars
-  //   // // country = registerDiv.querySelector('#signUpCountry').value;
-  //   // // email = registerDiv.querySelector('#signUpEmail').value;
-  //   // const buttonSignUp = registerDiv.querySelector('#signUp');
-
-  //   // buttonSignUp.click();
-
-  //   expect(submitRegister).toHaveBeenReturnedWidth(name, password, country, email);
-  // });
-});
-// PENDIENTE POR REVISAR
-it('submits a successful registration', () => {
-  expect.assertions(1);
-  return submitRegister('user@example.com', 'password123', 'John Doe', 'USA')
-    .then((userCredential) => {
-      expect(userCredential.user.uid).toBe('12345');
+  // REVISAR
+  /* it('deberia registrarse correctamente', () => {
+    const registerDiv = viewForRegister();
+    submitRegister.mockImplementationOnce(() => {
+      registerDiv.querySelector('#signUpPassword').value = 'holahola';
+      registerDiv.querySelector('#signUpPasswordConf').value = 'holahoAAAla';
+      registerDiv.querySelector('#signUpCountry').value = 'mexico';
+      registerDiv.querySelector('#signUpEmail').value = 'gabrielaavd@gmail.com';
+      registerDiv.querySelector('#fName').value = 'Gabriela';
+      const password = registerDiv.querySelector('#signUpPassword').value;
+      const passwordConf = registerDiv.querySelector('#signUpPasswordConf').value;
+      const name = registerDiv.querySelector('#fName').value;
+      // eslint-disable-next-line no-unused-vars
+      const country = registerDiv.querySelector('#signUpCountry').value;
+      const email = registerDiv.querySelector('#signUpEmail').value;
+      expect(submitRegister).toHaveBeenReturnedWith(name, password, country, 'dos');
     });
-});
+    const buttonSignUp = registerDiv.querySelector('#signUp');
+    buttonSignUp.click();
+    expect(submitRegister).toHaveBeenCalled();
+  });
+  // PENDIENTE POR REVISAR
+  it('submits a successful registration', () => {
+    expect.assertions(1);
+    return submitRegister('user@example.com', 'password123', 'John Doe', 'USA')
+      .then((userCredential) => {
+        expect(userCredential.user.uid).toBe('12345');
+      });
+  });
 
-// test for failed registration
-// PENDIENTE POR REVISAR
-it('submits a failed registration', () => {
-  // expect.assertions(1);
-  return submitRegister('user@example.com', 'password1A3', 'John Doe', 'USA')
-    .catch(async (error) => {
-      await expect(Promise.reject(error)).rejects.toThrow(
-        AuthErrorCodes.EMAIL_EXISTS,
-      );
-    });
+  // test for failed registration
+  // PENDIENTE POR REVISAR
+  it('submits a failed registration', () => {
+    expect.assertions(1);
+    return submitRegister('user@example.com', 'password1A3', 'John Doe', 'USA')
+      .catch(async (error) => {
+        await expect(Promise.reject(error)).rejects.toThrow(
+          AuthErrorCodes.EMAIL_EXISTS,
+        );
+      }); */
+  /* });
+  it('submits a failed registration', () => {
+    expect.assertions(1);
+    return submitRegister('user@example.com', 'password123', 'John Doe', 'USA')
+      .catch((error) => {
+        expect(error.message).toBe('Registration failed');
+      });
+  }); */
 });
-// it('submits a failed registration', () => {
-//   expect.assertions(1);
-//   return submitRegister('user@example.com', 'password123', 'John Doe', 'USA')
-//     .catch((error) => {
-//       expect(error.message).toBe('Registration failed');
-//     });
-// });
-
 describe('sendEmail', () => {
   it('debería ser una función', () => {
     expect(typeof sendEmail).toBe('function');
@@ -131,10 +135,6 @@ describe('sendEmail', () => {
       expect(currentUser).toBe('testUser');
       // return Promise.resolve();
     });
-    /* window.addEventListener('hashchange', () => {
-      expect(window.location.hash).toBe('#/');
-      done();
-    }); */
     sendEmail('testUser');
   });
 });
@@ -143,8 +143,16 @@ describe('forgotPassword', () => {
   it('deberia ser una función', () => {
     expect(typeof forgotPassword).toBe('function');
   });
-  it('forgotPassword llama correctamente a sendPasswordResetEmail', () => {
-    sendPasswordResetEmail.mockImplementationOnce((auth, email) => {
+  it('forgotPassword llama correctamente a sendPasswordResetEmail', async () => {
+    await sendPasswordResetEmail.mockImplementationOnce((auth, email) => {
+      const bodyHome = viewForHome();
+      // const textForAlert = bodyHome.querySelector('#textDisplay');
+      const buttonForgotPassword = bodyHome.querySelector('#forgotPassword');
+      const promise = forgotPassword('test@test.test');
+      buttonForgotPassword.click();
+      promise.catch((error) => {
+        expect(error.code).toBe('auth/user-not-found');
+      });
       expect(email).toBe('test@test.test');
       // return Promise.resolve();
     });
@@ -166,11 +174,21 @@ describe('logInHome', () => {
     logInHome('test@test.test', '123');
   });
   it('have an alert', async () => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
+    jest.spyOn(window, 'alert').mockImplementation(() => { });
     expect(window.alert).toBeDefined();
     await expect(Promise.reject(new Error('auth/wrong-password'))).rejects.toThrow(
       'auth/wrong-password',
     );
+  });
+  it('localstorage', () => {
+    jest.spyOn(localStorage, 'setItem');
+    localStorage.setItem = jest.fn();
+    jest.spyOn(global, 'localStorage');
+
+    expect(localStorage.setItem).toHaveBeenCalled();
+    // await expect(Promise.reject(new Error('auth/wrong-password'))).rejects.toThrow(
+    //   'auth/wrong-password',
+    // );
   });
 });
 
@@ -188,6 +206,31 @@ describe('viewForHome', () => {
     const bodyHome = viewForHome();
     const buttonSignUp = bodyHome.querySelector('#buttonRegister');
     expect(buttonSignUp.outerHTML).toBe('<button id="buttonRegister" class="buttonRegister">Register</button>');
+  });
+  it('Tenemos img eye password', () => {
+    const bodyHome = viewForHome();
+    const imgeyepasword = bodyHome.querySelector('#eyePassword');
+    expect(imgeyepasword.outerHTML).toBe('<img class="iconoPasswordEye" id="eyePassword" src="/img/eye.png" alt="showPassword">');
+  });
+  it('img eye password muestra contraseña', () => {
+    const bodyHome = viewForHome();
+    const imgeyepasword = bodyHome.querySelector('#eyePassword');
+    const typePassword = bodyHome.querySelector('#password');
+    imgeyepasword.click();
+    if (typePassword.type === 'password') {
+      expect(typePassword.type).toBe('text');
+    }
+  });
+  it('img eye password oculta contraseña', () => {
+    const bodyHome = viewForHome();
+    const imgeyepasword = bodyHome.querySelector('#eyePassword');
+    const typePassword = bodyHome.querySelector('#password');
+    imgeyepasword.click();
+    if (typePassword.type === 'password') {
+      typePassword.type = 'text';
+    } else {
+      expect(typePassword.type).toBe('password');
+    }
   });
   it('Tenemos boton de forgotPassword', () => {
     const bodyHome = viewForHome();
@@ -235,6 +278,7 @@ describe('googleLogIn', () => {
       expect(window.location.hash).toBe('#/profile');
     });
     googleLogIn();
+    // window.localStorage.setItem('userProfile', JSON.stringify(userSnap.data()));
   });
   // ----------------------Fin prueba 2----------------
 });
