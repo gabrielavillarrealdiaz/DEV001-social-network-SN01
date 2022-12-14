@@ -12,45 +12,44 @@ export const viewForHome = () => {
   button.classList.add('buton');
 
   button.innerText = 'Hola';
-  const textHome = `  <section class="homeDivi">
-  <img src="./img/homeBack01.png" id='upperBackground' class='upBackgroundHome'  alt="fondos superior">
-  <div class="headerLogo">
-    <img class= "logo" src="./img/pawsfinder.png" alt="Logo">
-  </div>
-  <div class="mainBox">
-  <img src="./img/homeImg.png" id='imgForHomeLeft' class='imgForHomeLeft'  alt="home image">
-      <div class= "input-wrapper">
-        <input  type= "email" class="input1" id="signInButton" placeholder="E-mail">
-        <img  class="iconoEmail" src="/img/email.png" alt= "icono email">
+  const textHome = `
+    <section class='homeDivi'>
+      <img src='./img/homeBack01.png' id='upperBackground' class='upBackgroundHome' alt='fondos superior'>
+      <div class='headerLogo'>
+        <img class= 'logo' src='./img/pawsfinder.png' alt='Logo'>
       </div>
-      <div class="input-wrapper">
-        <input id="password" type="password" class="input1" placeholder="Password">
-        <img class="iconoPassword" src="/img/password.png" alt="password">
-        <img class="iconoPasswordEye" id='eyePassword'  src="/img/eye.png" alt="showPassword">
-      </div>
-      <button class="buttonSignIn" id="buttonSignIn">Sign In</button>
-      <button class="forgotPassword" id="forgotPassword">Forgot Password</button>
-      <div class="textDisplay" id="textDisplay"></div>
-      <div class="textDisplay" id="textWrongPassword"></div>
-        <p class="registerText"><span class="text1">Doesn't have an account yet?</span> 
-      <button id="buttonRegister" class= "buttonRegister">Register</button></p>
-      <div class="login2">
-        <div class="acomodo">
-          <hr> <p>Or login with</p> <hr>
+      <div class='mainBox'>
+        <img src='./img/homeImg.png' id='imgForHomeLeft' class='imgForHomeLeft'  alt='home image'>
+        <div class='input-wrapper'>
+          <input type='email' class='input1' id='signInButton' placeholder='E-mail'>
+          <img class='iconoEmail' src='/img/email.png' alt='email icon'>
         </div>
-        <div class="google">
-          <img class="iconoGoogle" id='googleIcon' src="/img/google.svg" alt="google">
-          <div class="circle" id="circle"></div>
+        <div class='input-wrapper'>
+          <input id='password' type='password' class='input1' placeholder='Password'>
+          <img class='iconoPassword' src='/img/password.png' alt='password'>
+          <img class='iconoPasswordEye' id='eyePassword'  src='/img/eye.png' alt='showPassword'>
+        </div>
+        <button class='buttonSignIn' id='buttonSignIn'>Sign In</button>
+        <button class='forgotPassword' id='forgotPassword'>Forgot Password</button>
+        <div class='textDisplay' id='textDisplay'></div>
+        <div class='textDisplay' id='textWrongPassword'></div>
+        <p class='registerText'><span class='text1'>Doesn't have an account yet?</span> 
+          <button id='buttonRegister' class= 'buttonRegister'>Register</button></p>
+        <div class='login2'>
+          <div class='acomodo'>
+            <hr> <p>Or login with</p> <hr>
+          </div>
+          <div class='google'>
+            <img class='iconoGoogle' id='googleIcon' src='/img/google.svg' alt='google'>
+            <div class='circle' id='circle'></div>
+          </div>
         </div>
       </div>
-      
-  </div>
-</section>
-<div class="doggy">
-  <img  class="imgFooter" src="./img/multiPets.png" alt="Puppy2">
-  </div>
-
- `;
+    </section>
+    <div class='doggy'>
+      <img  class='imgFooter' src='./img/multiPets.png' alt='Puppy2'>
+    </div>
+`;
 
   homeDiv.innerHTML = textHome;
 
@@ -100,10 +99,9 @@ export const viewForHome = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         const credentialError = GoogleAuthProvider.credentialFromError(error);
-        // eslint-disable-next-line no-unused-expressions
-        errorCode || errorMessage || credentialError ? alert('there is a problem, try again') : false;
+        // eslint-disable-next-line no-unused-expressions, no-alert
+        errorCode || errorMessage || credentialError ? alert('There is a problem, try again') : false;
       });
-    console.log('google auth');
   });
 
   // olvidaste tu contraseña
@@ -112,13 +110,11 @@ export const viewForHome = () => {
     const email = homeDiv.querySelector('#signInButton').value;
     // console.log(email)
     if (email === '') {
-      alert('insert your email in the input call email');
+      alert('Insert your email in the input called email');
     } else {
       forgotPassword(email)
         .then(() => {
-          textForAlert.innerHTML = 'check your E-mail';
-          // alert('Password reset email sent!');
-          console.log(email);
+          textForAlert.innerHTML = 'Check your e-mail';
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -145,7 +141,7 @@ export const viewForHome = () => {
       .catch((error) => {
         // eslint-disable-next-line no-unused-expressions
         error.code === AuthErrorCodes.INVALID_PASSWORD
-        || error.code === AuthErrorCodes.USER_DELETED ? textForAlert.innerHTML = 'contraseña incorrecta' : false;
+        || error.code === AuthErrorCodes.USER_DELETED ? textForAlert.innerHTML = 'Wrong password' : false;
       });
   });
 

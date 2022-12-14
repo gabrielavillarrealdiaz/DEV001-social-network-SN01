@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable arrow-body-style */
 /**
  *
@@ -13,6 +14,8 @@ import {
   GoogleAuthProvider,
   updateProfile,
   signOut,
+  submitRegister,
+  AuthErrorCodes,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -21,11 +24,13 @@ import {
   deleteDoc,
   updateDoc,
   collection,
-  // db,
+  setDoc,
+  // db,,
 } from 'firebase/firestore';
-
 import {
-  submitRegister,
+  getStorage, ref, uploadBytesResumable, getDownloadURL,
+} from 'firebase/storage';
+import {
   sendEmail,
   forgotPassword,
   logInHome,
@@ -41,13 +46,20 @@ import {
   updatePost,
   updateLikes,
   changeHash,
+  saveDataFromUsers,
+  saveDataFromGoogle,
+  storage,
+  downloadUrl,
+  refFunction,
+  uploadToStorage,
+  updateUsers,
 } from '../src/lib/index';
 
 import { viewForHome } from '../src/components/home';
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
-
+jest.mock('firebase/storage');
 // Inicio testeo función submitRegister()
 describe('submitRegister', () => {
   it('debería ser una función', () => {
@@ -61,7 +73,54 @@ describe('submitRegister', () => {
     });
     submitRegister('test@test.test', '123');
   });
+  // it('deberia registrarse correctamente', () => {
+  //   // const registerDiv = viewForRegister();
+  //   // submitRegister.mockImplementationOnce((email) => {
+  //   // registerDiv.querySelector('#signUpPassword').value = 'holahola';
+  //   // // registerDiv.querySelector('#signUpPasswordConf').value = 'holahoAAAla';
+  //   // registerDiv.querySelector('#signUpCountry').value = 'mexico';
+  //   // registerDiv.querySelector('#signUpEmail').value = 'gabrielaavd@gmail.com';
+  //   // registerDiv.querySelector('#fName').value = 'Gabriela';
+  //   // password = registerDiv.querySelector('#signUpPassword').value;
+  //   // // const passwordConf = registerDiv.querySelector('#signUpPasswordConf').value;
+  //   // name = registerDiv.querySelector('#fName').value;
+  //   // // eslint-disable-next-line no-unused-vars
+  //   // // country = registerDiv.querySelector('#signUpCountry').value;
+  //   // // email = registerDiv.querySelector('#signUpEmail').value;
+  //   // const buttonSignUp = registerDiv.querySelector('#signUp');
+
+  //   // buttonSignUp.click();
+
+  //   expect(submitRegister).toHaveBeenReturnedWidth(name, password, country, email);
+  // });
 });
+// PENDIENTE POR REVISAR
+it('submits a successful registration', () => {
+  expect.assertions(1);
+  return submitRegister('user@example.com', 'password123', 'John Doe', 'USA')
+    .then((userCredential) => {
+      expect(userCredential.user.uid).toBe('12345');
+    });
+});
+
+// test for failed registration
+// PENDIENTE POR REVISAR
+it('submits a failed registration', () => {
+  // expect.assertions(1);
+  return submitRegister('user@example.com', 'password1A3', 'John Doe', 'USA')
+    .catch(async (error) => {
+      await expect(Promise.reject(error)).rejects.toThrow(
+        AuthErrorCodes.EMAIL_EXISTS,
+      );
+    });
+});
+// it('submits a failed registration', () => {
+//   expect.assertions(1);
+//   return submitRegister('user@example.com', 'password123', 'John Doe', 'USA')
+//     .catch((error) => {
+//       expect(error.message).toBe('Registration failed');
+//     });
+// });
 
 describe('sendEmail', () => {
   it('debería ser una función', () => {
@@ -219,8 +278,16 @@ describe('savePost', () => {
     expect(typeof savePost).toBe('function');
   });
   it('deberia llamar correctamente addDoc', () => {
-    savePost(addDoc);
-    expect(addDoc).toBeCalled();
+    addDoc.mockImplementationOnce(() => Promise.resolve());
+    collection.mockImplementationOnce(() => ({}));
+    savePost('textotexto', 'karla', 'kcrm900503', '9005030208', {});
+    expect(addDoc).toHaveBeenCalledWith(expect.anything(), {
+      textOfEachPost: 'textotexto',
+      nameOfUser: 'karla',
+      usersId: 'kcrm900503',
+      creationDate: '9005030208',
+      likes: {},
+    });
   });
 });
 
@@ -229,9 +296,9 @@ describe('changeHash', () => {
   it('debería ser una función', () => {
     expect(typeof changeHash).toBe('function');
   });
-  it('deberia llamar correctamente updateProfile', () => {
-    updatePhoto(updateProfile);
-    expect(updateProfile).toBeCalled();
+  it('cambiar al hash que coloquemos', () => {
+    changeHash('#/profile');
+    expect(window.location.hash).toBe('#/profile');
   });
 });
 
@@ -307,13 +374,14 @@ describe('updateLikes', () => {
   });
 });
 
-/* // saveDataFromUsers
+/// saveDataFromUsers
 describe('saveDataFromUsers', () => {
   it('debería ser una función', () => {
-    expect(typeof saveDataFromUsers).toBe('function');
+    expect(typeof saveDataFromGoogle).toBe('function');
   });
   it('debería llamar correctamente a', () => {
-    expect(saveDataFromUsers).toBe('');
+    saveDataFromUsers(setDoc);
+    expect(setDoc).toBeCalled();
   });
 });
 
@@ -323,10 +391,64 @@ describe('saveDataFromGoogle', () => {
     expect(typeof saveDataFromGoogle).toBe('function');
   });
   it('debería llamar correctamente a', () => {
-    expect(saveDataFromG).toBe('');
+    saveDataFromGoogle(setDoc);
+    expect(setDoc).toBeCalled();
   });
 });
- */
+
+// storage
+describe('storage', () => {
+  it('debería ser una función', () => {
+    expect(typeof storage).toBe('function');
+  });
+  it('debería llamar correctamente a', () => {
+    storage(getStorage);
+    expect(getStorage).toBeCalled();
+  });
+});
+
+// downloadUrl
+describe('downloadUrl', () => {
+  it('debería ser una función', () => {
+    expect(typeof downloadUrl).toBe('function');
+  });
+  it('debería llamar correctamente a', () => {
+    downloadUrl(getDownloadURL);
+    expect(getDownloadURL).toBeCalled();
+  });
+});
+
+// refFunction
+describe('refFunction', () => {
+  it('debería ser una función', () => {
+    expect(typeof refFunction).toBe('function');
+  });
+  it('debería llamar correctamente a ref', () => {
+    refFunction(ref);
+    expect(ref).toBeCalled();
+  });
+});
+
+// uploadToStorage
+describe('uploadToStorage', () => {
+  it('debería ser una función', () => {
+    expect(typeof uploadToStorage).toBe('function');
+  });
+  it('debería llamar correctamente a ref', () => {
+    uploadToStorage(uploadBytesResumable);
+    expect(uploadBytesResumable).toBeCalled();
+  });
+});
+// updateUsers
+describe('updateUsers', () => {
+  it('debería ser una función', () => {
+    expect(typeof updateUsers).toBe('function');
+  });
+  it('debería llamar correctamente a ref', () => {
+    updateUsers(updateDoc);
+    expect(updateDoc).toBeCalled();
+  });
+});
 /* import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { submitRegister } from '../src/lib/index.js';
 

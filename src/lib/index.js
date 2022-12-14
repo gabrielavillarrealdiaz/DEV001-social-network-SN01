@@ -1,6 +1,11 @@
 import {
   doc, setDoc, getDoc, addDoc, collection, onSnapshot, deleteDoc, updateDoc,
 } from 'firebase/firestore';
+
+import {
+  getStorage, ref, uploadBytesResumable, getDownloadURL,
+} from 'firebase/storage';
+
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -36,8 +41,8 @@ export const saveDataFromUsers = async (name, country, usersUid, email, password
     emails: email,
     passwords: password,
   });
-  const userFromFirestore = await getDoc(docs);
-  console.log(userFromFirestore.data(usersUid).user);
+  // const userFromFirestore = await getDoc(docs);
+  // console.log(userFromFirestore.data(usersUid).user);
   // localStorage.setItem('user', userFromFirestore.data(usersUid));
   // console.log(userFromFirestore.data(usersUid));
 };
@@ -68,7 +73,7 @@ export const sendEmail = (currentUser) => {
 export const submitRegister = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 /**
- * TODO: JSDO
+ *
  * Return a promise that sign in with Google
  */
 export const googleLogIn = () => {
@@ -103,9 +108,10 @@ export const updatePhoto = (currentUser, photo) => updateProfile(currentUser, {
 /**
  * Exporta constante que permite guardar información de los posts
  */
-export const savePost = (textOfEachPost, nameOfUser, usersId, creationDate, likes) => {
+// eslint-disable-next-line max-len
+export const savePost = (textOfEachPost, nameOfUser, usersId, creationDate, likes, petName, type, description) => {
   addDoc(collection(db, 'posts'), {
-    textOfEachPost, nameOfUser, usersId, creationDate, likes,
+    textOfEachPost, nameOfUser, usersId, creationDate, likes, petName, type, description,
   });
   // console.log('base datos');
 };
@@ -143,9 +149,38 @@ export const functionDeleteEachPost = (id) => deleteDoc(doc(db, 'posts', id));
  */
 export const updatePost = (id, newPost) => updateDoc(doc(db, 'posts', id), newPost);
 
+/**
+ * Exporta constante que actualiza likes del post según id de documento
+ */
 export const updateLikes = (id, likes) => updateDoc(doc(db, 'posts', id), likes);
 
 /**
- * Cerrar seción
+ * Exporta constante que cierra sesión
  */
 export const signOutUser = () => signOut(auth);
+
+/**
+ * Exporta constante que llama a la función de storage
+ */
+export const storage = () => getStorage();
+
+/**
+ *  Exporta constante que sube foto a storage y retorna url de descarga
+ */
+export const downloadUrl = (uploadTask) => getDownloadURL(uploadTask);
+
+/**
+ * Exporta constante que llama a la referencia de storage
+ */
+export const refFunction = (storageFunction, newPhoto) => ref(storageFunction, newPhoto);
+
+/**
+ * Exporta constante que sube foto a storage
+ */
+// eslint-disable-next-line max-len
+export const uploadToStorage = (reference, data, metadata) => uploadBytesResumable(reference, data, metadata);
+
+/**
+ * Exporta constante que actualiza documento users según id de documento
+ */
+export const updateUsers = (id, petName, type, description) => updateDoc(doc(db, 'users', id), petName, type, description);

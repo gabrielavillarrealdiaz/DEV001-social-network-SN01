@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 // import {  } from 'firebase/firestore';
 // import { async } from 'regenerator-runtime';
 import {
@@ -9,52 +10,97 @@ import {
 export const viewForPost = () => {
   // Crea constante user que guarda usuario desde localStorage con nombre 'user
   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
-  console.log(userProfile);
   const postDiv = document.createElement('div');
   postDiv.classList.add('fullBodyPost');
   // Añade el template de viewForPost en HTML
   const bodyOfPost = `
   <section class='grandpaDivForPost'>
-  <div id="banner">
-  <img src="./img/bannerPrototipo2.png" id='bannerPost' class='bannerPost'  alt="fondo color">
-  </div>
-  <img src="./img/yello.png" id='upperBackgroundPost' class='upperBackgroundPost'  alt="paw background>
-    <header class="headerOfPost">
+    <div class='carousel'>
+      <div class='previous-button'>&#128072</div>
+      <img src= './img/carrusel/bannerPrototipo2.png' id='imagen' class='imagen'  alt='fondo color'>
+      <div class='next-button'>&#128073</div>
+    </div>
+  <img src='./img/yello.png' id='upperBackgroundPost' class='upperBackgroundPost'  alt='paw background>
+    <header class='headerOfPost'>
       <div class='leftHeader'>
-        <div class="hamburger-menu">
-          <input id="menu__toggle" type="checkbox" />
-          <label class="menu__btn" for="menu__toggle">
+        <div class='hamburger-menu'>
+          <input id='menu__toggle' type='checkbox' />
+          <label class='menu__btn' for='menu__toggle'>
             <span></span>
           </label>
-          <ul class="menu__box">
-          <li><p id="postSelect" class="menu__item">Posts</p></li>
-          <li><p id= "profileSelect" class="menu__item">Me</p></li>
-          <li><p class="menu__item" id='closeSession' data-id ='${userProfile}'>Close</p></li>
+          <ul class='menu__box'>
+          <li><p id='postSelect' class='menu__item'>Posts</p></li>
+          <li><p id= 'profileSelect' class='menu__item'>Me</p></li>
+          <li><p class='menu__item' id='closeSession' data-id ='${userProfile}'>Close</p></li>
           </ul>
         </div>
       </div>
-        <h2 class="helloForPost">Hi ${userProfile.name}!</h2>
-        <img src="${userProfile.photoURL}" id='photoProfile' class= 'photoForPost'  alt="Imagen de perfil">
+        <h2 class='helloForPost'>Hi ${userProfile.name}!</h2>
+        <img src='${userProfile.photoURL}' id='photoProfile' class= 'photoForPost'  alt='Imagen de perfil'>
     </header>
     
-    <div class="post">
+    <div class='post'>
       <h3>Tell us about your day!</h3>
-      <div class="postAreaForEdit"> 
-        <textarea id= "inputPost" class= "textAreaPost" rows="6" cols="30"></textarea>
+      <div class='postAreaForEdit'> 
+        <textarea id= 'inputPost' class= 'textAreaPost' rows='6' cols='30'></textarea>
       </div>  
-      <span class= "buttonPostDiv">   
-      <button id="buttonPost" class="buttonPost">Post</button>
+      <span class= 'buttonPostDiv'>   
+      <button id='buttonPost' class='buttonPost'>Post</button>
       </span>
     </div>
-    <span class ="buttonShowPosts">
-    <button id="buttonShowPost" class="buttonShowPost2">Show Posts</button> 
+    <span class ='buttonShowPosts'>
+    <button id='buttonShowPost' class='buttonShowPost2'>Show Posts</button> 
     </span>
-    <div id="showPost" class="post-anteriores"></div>
+    <div id='showPost' class='post-anteriores'></div>
 
-    <img src="./img/paw1.png" id='pawBackgroundPost' class='pawBackgroundPost' alt="paw">
+    <img src='./img/paw1.png' id='pawBackgroundPost' class='pawBackgroundPost' alt='paw'>
    </section>
 `;
   postDiv.insertAdjacentHTML('beforeend', bodyOfPost);
+
+  const imagenes = ['./img/carrusel/bannerPrototipo3.png', './img/carrusel/bannerPrototipo2.png', './img/carrusel/bannerPrototipo4.png'];
+  let contador = 0;
+  function carousel(carrusel) {
+    carrusel.addEventListener('click', (e) => {
+      const atras = carrusel.querySelector('.previous-button');
+      const adelante = carrusel.querySelector('.next-button');
+      const img = carrusel.querySelector('img');
+      const tgt = e.target;
+      // eslint-disable-next-line eqeqeq
+      if (tgt == atras) {
+        if (contador > 0) {
+          img.src = imagenes[contador - 1];
+          // eslint-disable-next-line no-plusplus
+          contador--;
+        } else {
+          img.src = imagenes[imagenes.length - 1];
+          contador = imagenes.length - 1;
+        }
+      // eslint-disable-next-line eqeqeq
+      } else if (tgt == adelante) {
+        if (contador < (imagenes.length - 1)) {
+          img.src = imagenes[contador + 1];
+          // eslint-disable-next-line no-plusplus
+          contador++;
+        } else {
+          img.src = imagenes[0];
+          contador = 0;
+        }
+      }
+    });
+  }
+
+  const atras = postDiv.querySelector('.previous-button');
+  const adelante = postDiv.querySelector('.next-button');
+  atras.addEventListener('click', () => {
+    const carrusel = postDiv.querySelector('.carousel');
+    carousel(carrusel);
+  });
+  adelante.addEventListener('click', () => {
+    const carrusel = postDiv.querySelector('.carousel');
+    carousel(carrusel);
+  });
+
   const likes = [];
   // Selecciona button showPost desde template para mostrar posts
   const postArea = postDiv.querySelector('#showPost');
@@ -100,18 +146,18 @@ export const viewForPost = () => {
         // console.log(`${doc[0].usersId} ${userProfile.user}`);
         if (doc[0].usersId === userProfile.user) {
           const allPosts = `
-          <section class="bodyOfEachPost" id="bodyOfEachPost">
-              <header class="headerOfEachPost" id="headerOfEachPost">
-                <p class="nameOfUserPost" id="nameOfUserPost">${doc[0].nameOfUser} <span id='youTag'>You</span></p>
-                <p class="dateOfPost" id="dateOfPost">${dateOfPost.toLocaleDateString()}</p>
+          <section class='bodyOfEachPost' id='bodyOfEachPost'>
+              <header class='headerOfEachPost' id='headerOfEachPost'>
+                <p class='nameOfUserPost' id='nameOfUserPost'>${doc[0].nameOfUser} <span id='youTag'>You</span></p>
+                <p class='dateOfPost' id='dateOfPost'>${dateOfPost.toLocaleDateString()}</p>
               </header>
-              <div class="prueba" id="prueba">${doc[0].textOfEachPost}</div> 
-              <div class="reactionsandEventsForPost" id="reactionsandEventsForPost">
-                <img src="./img/delete.png" class="deletePost" id="deletePost" data-id=${doc[1].id}>
-                <img src="./img/editButton.png" class="editPost" id="editPost" data-id=${doc[1].id}>
-                <div class="likesRow">
-                  <img src= ${doc[0].likes.includes(userProfile.user) ? './img/likePaw2.png' : './img/likePaw.png'} class="likePost" data-id=${doc[1].id}>
-                  <span class="numberOfLikes">${doc[0].likes.length}</span>
+              <div class='prueba' id='prueba'>${doc[0].textOfEachPost}</div> 
+              <div class='reactionsandEventsForPost' id='reactionsandEventsForPost'>
+                <img src='./img/delete.png' class='deletePost' id='deletePost' data-id=${doc[1].id}>
+                <img src='./img/editButton.png' class='editPost' id='editPost' data-id=${doc[1].id}>
+                <div class='likesRow'>
+                  <img src= ${doc[0].likes.includes(userProfile.user) ? './img/likePaw2.png' : './img/likePaw.png'} class='likePost' data-id=${doc[1].id}>
+                  <span class='numberOfLikes'>${doc[0].likes.length}</span>
                 </div>
               </div>
           </section>
@@ -121,16 +167,16 @@ export const viewForPost = () => {
           // Si no, se insertan únicamente los posts de los demás usuarios
         } else {
           const allPosts = `
-          <section class="bodyOfEachPost" id="bodyOfEachPost">
-            <header class="headerOfEachPost" id="headerOfEachPost">
-              <p class="nameOfUserPost" id="nameOfUserPost">${doc[0].nameOfUser}</p>
-              <p class="dateOfPost" id="dateOfPost">${dateOfPost.toLocaleDateString()}</p>
+          <section class='bodyOfEachPost' id='bodyOfEachPost'>
+            <header class='headerOfEachPost' id='headerOfEachPost'>
+              <p class='nameOfUserPost' id='nameOfUserPost'>${doc[0].nameOfUser}</p>
+              <p class='dateOfPost' id='dateOfPost'>${dateOfPost.toLocaleDateString()}</p>
             </header>
-            <div class="prueba">${doc[0].textOfEachPost}</div> 
-            <div class="reactionsandEventsForPost2" id="reactionsandEventsForPost">
-              <div class="likesRow">
-                <img src= ${doc[0].likes.includes(userProfile.user) ? './img/likePaw2.png' : './img/likePaw.png'} class="likePost" data-id=${doc[1].id}>
-                <span class="numberOfLikes">${doc[0].likes.length}</span>
+            <div class='prueba'>${doc[0].textOfEachPost}</div> 
+            <div class='reactionsandEventsForPost2' id='reactionsandEventsForPost'>
+              <div class='likesRow'>
+                <img src= ${doc[0].likes.includes(userProfile.user) ? './img/likePaw2.png' : './img/likePaw.png'} class='likePost' data-id=${doc[1].id}>
+                <span class='numberOfLikes'>${doc[0].likes.length}</span>
               </div>
             </div>
           </section>
