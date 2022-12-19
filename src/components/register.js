@@ -11,10 +11,10 @@ export const viewForRegister = () => {
 
   const registerText = `
   <section class='registerBody'>
-  <img class='manchaRegister' src='./img/mancha.png' alt='fondo de mancha'>
+  <img class='manchaRegister' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/mancha.png' alt='fondo de mancha'>
     <div class='headRegister'>
-      <img class='logo2' src='./img/pawsfinder.png' alt='Logo'>
-      <img class='multiPets' src='./img/multiPets.png' alt='pets'>
+      <img class='logo2' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/pawsfinder.png' alt='Logo'>
+      <img class='multiPets' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/multiPets.png' alt='pets'>
     </div>
     <form class='formRegister' id='formRegister'>
       <h1 class='signUp'>Sign Up</h1>
@@ -46,8 +46,8 @@ export const viewForRegister = () => {
       <button class='return' id='return'>Return</button>
     </div> 
   </section>
-  <img class='upperBackground2' src='./img/homeBack01.png' alt='fondo de mancha'>
-  <img src='./img/cat.png' id='imgForRegister' class='imgForRegisterLandPage'  alt='register img'>
+  <img class='upperBackground2' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/homeBack01.png' alt='fondo de mancha'>
+  <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/cat.png' id='imgForRegister' class='imgForRegisterLandPage'  alt='register img'>
   `;
 
   registerDiv.innerHTML = registerText;

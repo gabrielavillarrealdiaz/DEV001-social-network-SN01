@@ -5,3 +5,6 @@ node_modules/
 .yarn.lock
 package-lock.json
 .firebase/
+
+# Local Netlify folder
+.netlify

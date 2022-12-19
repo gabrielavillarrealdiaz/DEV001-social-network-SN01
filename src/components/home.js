@@ -15,20 +15,20 @@ export const viewForHome = () => {
   button.innerText = 'Hola';
   const textHome = `
     <section class='homeDivi'>
-      <img src='./img/homeBack01.png' id='upperBackground' class='upBackgroundHome' alt='fondos superior'>
+      <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/homeBack01.png' id='upperBackground' class='upBackgroundHome' alt='fondos superior'>
       <div class='headerLogo'>
-        <img class= 'logo' src='./img/pawsfinder.png' alt='Logo'>
+        <img class= 'logo' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/pawsfinder.png' alt='Logo'>
       </div>
       <div class='mainBox'>
-        <img src='./img/homeImg.png' id='imgForHomeLeft' class='imgForHomeLeft'  alt='home image'>
+        <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/homeImg.png' id='imgForHomeLeft' class='imgForHomeLeft'  alt='home image'>
         <div class='input-wrapper'>
           <input type='email' class='input1' id='signInButton' placeholder='E-mail'>
-          <img class='iconoEmail' src='/img/email.png' alt='email icon'>
+          <img class='iconoEmail' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/email.png' alt='email icon'>
         </div>
         <div class='input-wrapper'>
           <input id='password' type='password' class='input1' placeholder='Password'>
-          <img class='iconoPassword' src='/img/password.png' alt='password'>
-          <img class='iconoPasswordEye' id='eyePassword'  src='/img/eye.png' alt='showPassword'>
+          <img class='iconoPassword' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/password.png' alt='password'>
+          <img class='iconoPasswordEye' id='eyePassword'  src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/eye.png' alt='showPassword'>
         </div>
         <button class='buttonSignIn' id='buttonSignIn'>Sign In</button>
         <button class='forgotPassword' id='forgotPassword'>Forgot Password</button>
@@ -41,14 +41,14 @@ export const viewForHome = () => {
             <hr> <p>Or login with</p> <hr>
           </div>
           <div class='google'>
-            <img class='iconoGoogle' id='googleIcon' src='/img/google.svg' alt='google'>
+            <img class='iconoGoogle' id='googleIcon' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/google.svg' alt='google'>
             <div class='circle' id='circle'></div>
           </div>
         </div>
       </div>
     </section>
     <div class='doggy'>
-      <img  class='imgFooter' src='./img/multiPets.png' alt='Puppy2'>
+      <img  class='imgFooter' src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/multiPets.png' alt='Puppy2'>
     </div>
 `;
 
