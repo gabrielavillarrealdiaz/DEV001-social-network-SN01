@@ -74,6 +74,10 @@
      justify-content: center;
  }
 
+ .carousel {
+     display: none;
+ }
+
  .buttonShowPost2 {
      background-image: linear-gradient(to right, #3A1C71 0%, #a644e7 51%, #711c4e 100%);
      margin: 10px;
@@ -120,11 +124,11 @@
 
  }
 
- .buttonShowPost2:hover{
-    background-position: right center;
-    /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
+ .buttonShowPost2:hover {
+     background-position: right center;
+     /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
  }
 
  .helloForPost {
@@ -186,7 +190,7 @@
      gap: 3vh;
      position: relative;
  }
- 
+
  .textAreaPost {
      margin: 15px;
      z-index: 150;
@@ -208,6 +212,18 @@
      width: 100%;
      justify-content: center;
  }
+
+ #postSelect {
+     background: transparent;
+     border-style: none;
+     width: 100%;
+     text-align: left;
+ }
+
+ #postSelect:hover {
+     background-color: #CFD8DC;
+ }
+
 
  #post {
      box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
@@ -420,14 +436,14 @@
      display: none;
  }
 
- .carousel{
-    z-index: 20;
+ .carousel {
+     z-index: 20;
  }
 
  .postAreaForEdit {
-    width:90%;
-    display: flex;
-    justify-content: center;
+     width: 90%;
+     display: flex;
+     justify-content: center;
  }
 
  @media screen and (min-width: 1024px) and (orientation: landscape) {
@@ -497,11 +513,12 @@
          font-size: 1.2rem;
          width: 30%;
      }
-     .post{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width:100%
+
+     .post {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         width: 100%
      }
 
 
@@ -509,52 +526,65 @@
          font-size: 1.2rem;
          width: 30%;
      }
-     
+
      .textAreaPost {
-        width:40vw;
+         width: 40vw;
      }
 
-     .postAreaForEdit{
-        width:40vw;
-        display: flex;
-        justify-content: center;
+     .postAreaForEdit {
+         width: 40vw;
+         display: flex;
+         justify-content: center;
      }
 
-     .buttonPost{
-        width: 30%;
-        height: 5vh;
+     .buttonPost {
+         width: 30%;
+         height: 5vh;
      }
 
      .buttonShowPosts {
-        width: 80%;
-    }
+         width: 80%;
+     }
 
-    .buttonShowPost2 {
-        background-image: linear-gradient(to right, #3A1C71 0%, #a644e7 51%, #711c4e 100%);
-        margin: 10px;
-        padding: 5px 15px;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 1vh;
-        display: flex;
-        border-style: none;
-        z-index: 100;
-        width: 30vw;
-        height: 5vh;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-    }
+     .buttonShowPost2 {
+         background-image: linear-gradient(to right, #3A1C71 0%, #a644e7 51%, #711c4e 100%);
+         margin: 10px;
+         padding: 5px 15px;
+         transition: 0.5s;
+         background-size: 200% auto;
+         color: white;
+         box-shadow: 0 0 20px #eee;
+         border-radius: 1vh;
+         display: flex;
+         border-style: none;
+         z-index: 100;
+         width: 30vw;
+         height: 5vh;
+         align-items: center;
+         justify-content: center;
+         font-weight: 700;
+     }
 
-    .post-anteriores {
-        width: 40vw;
-        display: flex;
-        flex-direction: column;
-        gap: 3vh;
-        position: relative;
-    }
+     .post-anteriores {
+         width: 40vw;
+         display: flex;
+         flex-direction: column;
+         gap: 3vh;
+         position: relative;
+     }
 
+     .previous-button {
+         width: 4vw;
+     }
+
+     .next-button {
+         width: 4vw;
+     }
+
+     .carousel {
+         display: flex;
+         align-items: center;
+         gap: 1vh
+     }
 
  }

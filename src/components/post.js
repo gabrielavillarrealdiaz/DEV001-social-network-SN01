@@ -16,9 +16,9 @@ export const viewForPost = () => {
   const bodyOfPost = `
   <section class='grandpaDivForPost'>
     <div class='carousel'>
-      <div class='previous-button'>&#128072</div>
-      <img src= './img/carrusel/bannerPrototipo2.png' id='imagen' class='imagen'  alt='fondo color'>
-      <div class='next-button'>&#128073</div>
+    <img src= './img/carrusel/izq.png' id='left' class='previous-button' alt='left'>
+    <img src= './img/carrusel/bannerPrototipo2.png' id='image' class='image'  alt='ads banner'>
+    <img src= './img/carrusel/der.png' id='right' class='next-button' alt='right'>
     </div>
   <img src='./img/yello.png' id='upperBackgroundPost' class='upperBackgroundPost'  alt='paw background>
     <header class='headerOfPost'>
@@ -58,34 +58,45 @@ export const viewForPost = () => {
 `;
   postDiv.insertAdjacentHTML('beforeend', bodyOfPost);
 
-  const imagenes = ['./img/carrusel/bannerPrototipo3.png', './img/carrusel/bannerPrototipo2.png', './img/carrusel/bannerPrototipo4.png'];
-  let contador = 0;
-  function carousel(carrusel) {
-    carrusel.addEventListener('click', (e) => {
-      const atras = carrusel.querySelector('.previous-button');
-      const adelante = carrusel.querySelector('.next-button');
-      const img = carrusel.querySelector('img');
-      const tgt = e.target;
+  const profile = postDiv.querySelector('#profileSelect');
+  // Escucha evento 'click' en constante profile y realiza cambio de hash con función changeHash
+  profile.addEventListener('click', () => {
+    changeHash('#/profile');
+  });
+
+  const postSelect = postDiv.querySelector('#postSelect');
+  // Escucha evento 'click' en constante profile y realiza cambio de hash con función changeHash
+  postSelect.addEventListener('click', () => {
+    changeHash('#/post');
+  });
+
+  const images = ['./img/carrusel/bannerPrototipo2.png', './img/carrusel/bannerPrototipo3.png', './img/carrusel/bannerPrototipo4.png'];
+  let counter = 0;
+  function carousel() {
+    const back = postDiv.querySelector('.previous-button');
+    back.addEventListener('click', () => {
+      const img = postDiv.querySelector('#image');
+      if (counter > 0) {
+        img.src = images[counter - 1];
+        // eslint-disable-next-line no-plusplus
+        counter--;
+      } else {
+        img.src = images[images.length - 1];
+        counter = images.length - 1;
+      }
       // eslint-disable-next-line eqeqeq
-      if (tgt == atras) {
-        if (contador > 0) {
-          img.src = imagenes[contador - 1];
-          // eslint-disable-next-line no-plusplus
-          contador--;
-        } else {
-          img.src = imagenes[imagenes.length - 1];
-          contador = imagenes.length - 1;
-        }
-      // eslint-disable-next-line eqeqeq
-      } else if (tgt == adelante) {
-        if (contador < (imagenes.length - 1)) {
-          img.src = imagenes[contador + 1];
-          // eslint-disable-next-line no-plusplus
-          contador++;
-        } else {
-          img.src = imagenes[0];
-          contador = 0;
-        }
+    });
+
+    const forward = postDiv.querySelector('.next-button');
+    forward.addEventListener('click', () => {
+      const img = postDiv.querySelector('#image');
+      if (counter < (images.length - 1)) {
+        img.src = images[counter + 1];
+        // eslint-disable-next-line no-plusplus
+        counter++;
+      } else {
+        img.src = images[0];
+        counter = 0;
       }
     });
   }
@@ -104,7 +115,6 @@ export const viewForPost = () => {
   const likes = [];
   // Selecciona button showPost desde template para mostrar posts
   const postArea = postDiv.querySelector('#showPost');
-  // console.log(postArea);
   // Escucha evento 'click' en button buttonPost
   postDiv.querySelector('#buttonPost').addEventListener('click', () => {
     const textAreaPost = postDiv.querySelector('#inputPost').value;
@@ -112,17 +122,14 @@ export const viewForPost = () => {
     const userUid = userProfile.user;
     // crea constante que guarda la fecha del momento en el que se guarda el post
     const creationDatePost = Date.now();
-    // console.log(textAreaPost);
     // guarda el post en función savePost con parámetros
     savePost(textAreaPost, nameUser, userUid, creationDatePost, likes);
-    // console.log(nameUser);
   });
   const buttonShowPost = postDiv.querySelector('#buttonShowPost');
   // Selecciona button showPost para mostrar posts y escucha evento 'click'
   buttonShowPost.addEventListener('click', async () => {
     // Llama a la función getPost que trae los posts publicados
     getPost((querySnapshot) => {
-      // console.log(querySnapshot);
       postArea.innerHTML = '';
       const arrayForPost = [];
       // Consigue la data y cada post es agregado en un array + id de documento del post
@@ -130,11 +137,7 @@ export const viewForPost = () => {
         const data = doc.data();
         const idDoc = doc.id;
         arrayForPost.push([data, { id: idDoc }]);
-        // console.log(arrayForPost);
-        // console.log(Math.max(data[0].creationDate));
       });
-
-      // console.log(arrayForPost[0][0]);
       // En el array creado, se utiliza método sort para ordenar los post de forma descendente
       const dataSort = arrayForPost.sort(
         (a, b) => new Date(b[0].creationDate) - new Date(a[0].creationDate),
@@ -143,7 +146,6 @@ export const viewForPost = () => {
       // y si coincide, se inserta en el HTML un template para el post
       dataSort.forEach((doc) => {
         const dateOfPost = new Date(doc[0].creationDate);
-        // console.log(`${doc[0].usersId} ${userProfile.user}`);
         if (doc[0].usersId === userProfile.user) {
           const allPosts = `
           <section class='bodyOfEachPost' id='bodyOfEachPost'>
@@ -191,14 +193,10 @@ export const viewForPost = () => {
           buttonsForDelete.forEach((button) => {
             button.addEventListener('click', ({ target: { dataset } }) => {
               const postId = dataset.id;
-              console.log(dataset.id);
               if (doc[1].id === postId) {
-                alert('confirm?');
+                // eslint-disable-next-line no-restricted-globals, no-unused-expressions
+                confirm('Confirm delete post?') ? functionDeleteEachPost(postId) : false;
                 // eslint-disable-next-line no-restricted-globals
-                // const result = confirm('Delete post??');
-                // //if (result === true) {
-                //   functionDeleteEachPost(dataset.id);}
-                functionDeleteEachPost(postId);
               }
             });
           });
@@ -233,7 +231,6 @@ export const viewForPost = () => {
                 buttonSaveNewPost.innerText = 'save';
                 buttonSaveNewPost.setAttribute('id', doc[1].id);
                 conteinerOfEditPost.appendChild(buttonSaveNewPost);
-                // console.log(buttonSaveNewPost.id);
 
                 /*  crear boton cerrar */
 
@@ -246,8 +243,6 @@ export const viewForPost = () => {
 
                 buttonSaveNewPost.addEventListener('click', () => {
                   const valueEditArea = textAreaForEdit.value;
-                  /* console.log(valueEditArea);
-                  console.log(buttonSaveNewPost.id); */
                   updatePost(buttonSaveNewPost.id, {
                     textOfEachPost: valueEditArea,
                   }).then(() => {
@@ -280,7 +275,6 @@ export const viewForPost = () => {
       const buttonLikes = postArea.querySelectorAll('.likePost');
       buttonLikes.forEach((button) => {
         button.addEventListener('click', async ({ target: { dataset } }) => {
-          // button.preventDefault();
           const post = await getSavePosts(dataset.id);
           const docOfEachPost = post.data();
           if (!docOfEachPost.likes.includes(userProfile.user)) {
@@ -293,8 +287,6 @@ export const viewForPost = () => {
           }
         });
       });
-
-      //
     });
     // aqui termina
   });
@@ -307,9 +299,10 @@ export const viewForPost = () => {
           changeHash('#/');
         })
         .catch((error) => {
+          // eslint-disable-next-line no-unused-vars
           const errorCode = error.code;
+          // eslint-disable-next-line no-unused-vars
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
         });
     } else {
       changeHash('#/post');
