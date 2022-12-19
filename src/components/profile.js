@@ -34,7 +34,7 @@ export const viewForProfile = () => {
 
       <ul class='menu__box'>
         <li><button id='postSelect' class='menu__item'>Posts</button></li>
-        <li><p id= 'profileSelect' class='menu__item'>Me</p></li>
+        <li><p id='profileSelect' class='menu__item'>Me</p></li>
         <li><p class='menu__item' id='closeSession'>Close</p></li>
       </ul>
     </div>
@@ -76,6 +76,12 @@ export const viewForProfile = () => {
   post.addEventListener('click', () => {
     changeHash('#/post');
   });
+
+  const profile = profileDiv.querySelector('#profileSelect');
+  // Escucha evento 'click' en constante profile y realiza cambio de hash con función changeHash
+  profile.addEventListener('click', () => {
+    changeHash('#/profile');
+  });
   // Input con type file y ID updatePhoto
   const photoForProfile = profileDiv.querySelector('#updatePhoto');
   // Escucha evento de cambio
@@ -85,9 +91,6 @@ export const viewForProfile = () => {
     // Selecciona el primer elemento de fileList
     // y muestra sólo la propiedad name, que es la ruta del archivo
     const newPhoto = fileList[0].name;
-    console.log(fileList[0]);
-    // console.log(user.photoURL);
-    console.log(profileDiv.querySelector('#photoProfile'));
     // Guarda en constante usersRef la referencia a la colección
     const usersRef = doc(db, 'users', user.uid);
     // llama a función getStorage
@@ -105,7 +108,6 @@ export const viewForProfile = () => {
     //  + actualiza perfil del usuario
     downloadUrl(uploadTask.snapshot.ref)
       .then((downloadURL) => {
-        console.log('File available at', downloadURL);
         updateDoc(usersRef, {
           photoURL: downloadURL,
         });
@@ -115,36 +117,31 @@ export const viewForProfile = () => {
           // Crea elemento en localStorage con la data del user
           localStorage.setItem('userProfile', JSON.stringify(userSnap.data()));
           const userPhotosnew = JSON.parse(localStorage.getItem('userProfile'));
-          console.log(userPhotosnew.photoURL);
           profileDiv.querySelector('#photoProfile').src = userPhotosnew.photoURL;
           updatePhoto(user, userPhotosnew.photoURL);
           if (userPhotosnew) {
             photo = userPhotosnew;
           }
-          // eslint-disable-next-line max-len
-          // profileDiv.querySelector('#photoProfile').src = JSON.parse(localStorage.getItem(userPhotos.photoURL);
         });
-        // eslint-disable-next-line consistent-return
-        // .then((downloadURL) => {
-        //   console.log(userPhotos);
-        //   if (userPhotosnew !== null) {
-        //     userProfile = userPhotosnew;
-        //   }
-        // });
       });
   });
   const buttonCloseSesion = profileDiv.querySelector('#closeSession');
   buttonCloseSesion.addEventListener('click', () => {
-    alert('Confirm close session?');
-    signOutUser(auth)
-      .then(() => {
-        changeHash('#/');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Confirm close session?')) {
+      signOutUser(auth)
+        .then(() => {
+          changeHash('#/');
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-unused-vars
+          const errorCode = error.code;
+          // eslint-disable-next-line no-unused-vars
+          const errorMessage = error.message;
+        });
+    } else {
+      changeHash('#/post');
+    }
   });
 
   const buttonsave = profileDiv.querySelector('#buttonSave');
@@ -152,7 +149,6 @@ export const viewForProfile = () => {
     const namePetInput = profileDiv.querySelector('#namePet').value;
     const typeInput = profileDiv.querySelector('#type').value;
     const descriptionInput = profileDiv.querySelector('#description').value;
-    console.log('hola');
     e.preventDefault();
     updateUsers(userProfile.user, {
       petName: namePetInput,
@@ -160,7 +156,6 @@ export const viewForProfile = () => {
       description: descriptionInput,
     })
       .then(() => {
-        console.log('ya se pudo');
       });
   });
   return profileDiv;

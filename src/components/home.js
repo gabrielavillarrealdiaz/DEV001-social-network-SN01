@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   logInHome, googleLogIn, forgotPassword, saveDataFromGoogle, changeHash, getUser,
 } from '../lib/index';
@@ -89,7 +90,6 @@ export const viewForHome = () => {
           const usersId = user.uid;
           const nameGoogle = user.displayName;
           const emailGoogle = user.email;
-          console.log(usersId, nameGoogle, emailGoogle);
           saveDataFromGoogle(nameGoogle, usersId, emailGoogle);
           changeHash('#/profile');
         });
@@ -108,7 +108,6 @@ export const viewForHome = () => {
   homeDiv.querySelector('#forgotPassword').addEventListener('click', (e) => {
     e.preventDefault();
     const email = homeDiv.querySelector('#signInButton').value;
-    // console.log(email)
     if (email === '') {
       alert('Insert your email in the input called email');
     } else {
@@ -119,7 +118,6 @@ export const viewForHome = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
         });
     }
   });

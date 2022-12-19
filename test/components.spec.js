@@ -1,10 +1,10 @@
-/* aqui vamos a testear la funcionalidad de cada componente */
 // eslint-disable-next-line import/no-duplicates
 // import { getDownloadURL } from 'firebase/firestore';
 import { changeHash } from '../src/lib/index';
 import { viewForRegister } from '../src/components/register';
 import { viewForProfile } from '../src/components/profile';
 import { viewForPost } from '../src/components/post';
+import { viewForHome } from '../src/components/home';
 
 // eslint-disable-next-line import/no-duplicates
 // import index from '../src/lib/index';
@@ -15,6 +15,7 @@ jest.mock('../src/lib/index.js', () => ({
 }));
 // eslint-disable-next-line import/no-named-as-default-member
 // index.changeHash = jest.fn();
+
 // test componente register (viewForRegister)
 describe('viewForRegister', () => {
   it('debería ser una función', () => {
@@ -59,6 +60,13 @@ describe('viewForRegister', () => {
     const passwordConfTwo = registerDiv.querySelector('#signUpPasswordConf');
     buttonSignUp.click();
     expect(passwordConfTwo.classList.contains('red')).toBe(false);
+  });
+  it('se llama a changeHash desde botón forChangeViewToRegister', () => {
+    const homeDiv = viewForHome();
+    const forChangeViewToRegister = homeDiv.querySelector('#buttonRegister');
+    forChangeViewToRegister.click();
+    expect(changeHash).toBeCalled();
+    expect(changeHash).toBeCalledWith('#/register');
   });
 
   it('anuncia que falta llenar un input', () => {
@@ -133,5 +141,58 @@ describe('viewForPost', () => {
     const bodyPosts = viewForPost();
     const buttonShowPost = bodyPosts.querySelector('#buttonShowPost');
     expect(buttonShowPost.outerHTML).toBe('<button id="buttonShowPost" class="buttonShowPost2">Show Posts</button>');
+  });
+});
+
+// test de vista viewForHome
+describe('viewForHome', () => {
+  it('debería ser una función', () => {
+    expect(typeof viewForHome).toBe('function');
+  });
+  it('Tenemos boton de login en HTML', () => {
+    const bodyHome = viewForHome();
+    const buttonSignIn = bodyHome.querySelector('#buttonSignIn');
+    expect(buttonSignIn.outerHTML).toBe('<button class="buttonSignIn" id="buttonSignIn">Sign In</button>');
+  });
+  it('Tenemos boton de register', () => {
+    const bodyHome = viewForHome();
+    const buttonSignUp = bodyHome.querySelector('#buttonRegister');
+    expect(buttonSignUp.outerHTML).toBe('<button id="buttonRegister" class="buttonRegister">Register</button>');
+  });
+  it('Tenemos img eye password', () => {
+    const bodyHome = viewForHome();
+    const imgeyepasword = bodyHome.querySelector('#eyePassword');
+    expect(imgeyepasword.outerHTML).toBe('<img class="iconoPasswordEye" id="eyePassword" src="/img/eye.png" alt="showPassword">');
+  });
+  it('img eye password muestra contraseña', () => {
+    const bodyHome = viewForHome();
+    const imgeyepassword = bodyHome.querySelector('#eyePassword');
+    const typePassword = bodyHome.querySelector('#password');
+    imgeyepassword.click();
+    if (typePassword.type === 'password') {
+      expect(typePassword.type).toBe('text');
+    }
+  });
+  it('img eye password oculta contraseña', () => {
+    const bodyHome = viewForHome();
+    const imgeyepassword = bodyHome.querySelector('#eyePassword');
+    const typePassword = bodyHome.querySelector('#password');
+    imgeyepassword.click();
+    imgeyepassword.click();
+    if (typePassword.type === 'password') {
+      typePassword.type = 'text';
+    } else {
+      expect(typePassword.type).toBe('password');
+    }
+  });
+  it('Tenemos boton de forgotPassword', () => {
+    const bodyHome = viewForHome();
+    const buttonForgotPassword = bodyHome.querySelector('#forgotPassword');
+    expect(buttonForgotPassword.outerHTML).toBe('<button class="forgotPassword" id="forgotPassword">Forgot Password</button>');
+  });
+  it('Tenemos boton de loginGoogle', () => {
+    const bodyHome = viewForHome();
+    const buttonGoogleLogIn = bodyHome.querySelector('#googleIcon');
+    expect(buttonGoogleLogIn.outerHTML).toBe('<img class="iconoGoogle" id="googleIcon" src="/img/google.svg" alt="google">');
   });
 });

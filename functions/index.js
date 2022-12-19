@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint linebreak-style: ["error", "windows"] */
 const functions = require("firebase-functions");
 
 // // Create and Deploy Your First Cloud Functions

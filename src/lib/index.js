@@ -41,10 +41,6 @@ export const saveDataFromUsers = async (name, country, usersUid, email, password
     emails: email,
     passwords: password,
   });
-  // const userFromFirestore = await getDoc(docs);
-  // console.log(userFromFirestore.data(usersUid).user);
-  // localStorage.setItem('user', userFromFirestore.data(usersUid));
-  // console.log(userFromFirestore.data(usersUid));
 };
 
 /**
@@ -109,11 +105,10 @@ export const updatePhoto = (currentUser, photo) => updateProfile(currentUser, {
  * Exporta constante que permite guardar información de los posts
  */
 // eslint-disable-next-line max-len
-export const savePost = (textOfEachPost, nameOfUser, usersId, creationDate, likes, petName, type, description) => {
+export const savePost = (textOfEachPost, nameOfUser, usersId, creationDate, likes) => {
   addDoc(collection(db, 'posts'), {
-    textOfEachPost, nameOfUser, usersId, creationDate, likes, petName, type, description,
+    textOfEachPost, nameOfUser, usersId, creationDate, likes,
   });
-  // console.log('base datos');
 };
 
 /**

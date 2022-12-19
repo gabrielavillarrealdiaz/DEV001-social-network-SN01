@@ -1,0 +1,2041 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap');/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+  
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.homeDivi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-height: 100%;
+  padding: 10px;
+  margin-bottom: 3rem;
+}
+
+.headerLogo {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  margin-top: 3rem;
+}
+
+.logo {
+  width: 20vh;
+  margin-bottom: 4vh;
+  z-index: 100;
+}
+
+.cuerpo {
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(252, 250, 250);
+  background-size: all;
+}
+
+.imgFooter {
+  width: 34vh;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: 0;
+}
+
+.login2 {
+  max-width: 95vw;
+  height: 90vh;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 100;
+}
+
+.mainBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  position: relative;
+  z-index: 100;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 85vw;
+}
+
+.input1 {
+  width: 85vw;
+  height: 6vh;
+  border-radius: 0.3rem;
+  border-style: none;
+  text-align: center;
+  font-size: 2.3vh;
+  display: flex;
+  padding: 1rem;
+  position: relative;
+  z-index: 50;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonSignIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  height: 6vh;
+  background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+  transition: 0.5s;
+  border: none;
+  background-size: 200% auto;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #eee;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1em;
+  z-index: 50;
+}
+
+.buttonSignIn:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+.buttonRegister {
+  background-color: transparent;
+  border: none;
+  font-weight: 700;
+  color: #03002b;
+  font-size: 1em;
+}
+
+.registerText {
+  text-align: center;
+}
+
+.text2 {
+  font-size: 1em;
+  font-weight: 600;
+  color: #03002b;
+  text-decoration: none;
+  z-index: 50;
+}
+
+.text1 {
+  font-size: 1em;
+  font-weight: 500;
+  color: #03002b;
+  text-decoration: none;
+  z-index: 50;
+}
+
+.doggy {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+hr {
+  border: 1px #81a8c9;
+  width: 22vw;
+  z-index: 50;
+  border-style: solid;
+  margin-top: -1.3vh;
+}
+
+.acomodo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.iconoEmail {
+  z-index: 100;
+  position: absolute;
+  height: 50%;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+.iconoPasswordEye {
+  z-index: 100;
+  position: absolute;
+  height: 30%;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.iconoPassword {
+  z-index: 100;
+  position: absolute;
+  height: 50%;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.imgForHomeLeft {
+  display: none;
+}
+
+.imgForHomeRight {
+  display: none;
+  position: absolute;
+  z-index: 200;
+  width: 70vh;
+  bottom: 2vh;
+  right: -60vh;
+  animation-name: bounce;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+
+.login2 p {
+  color: #03002b;
+  font-weight: 500;
+  font-size: 1em;
+  margin-top: -1.3vh;
+}
+
+.google {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.iconoGoogle {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  z-index: 100;
+  margin-top: 0.9em;
+
+}
+
+#circle {
+  z-index: 0;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  top: 1.1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+/*aqui va el css de register*/
+
+.fullBodyOfRegister {
+  width: 100%;
+  height: 100vmax;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(252, 250, 250);
+  background-size: cover;
+  padding-bottom: 8vh;
+}
+
+.registerBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7vh;
+  padding-right: 1.5vw;
+  padding-left: 1.5vw;
+  padding-bottom: 4vh;
+  height: 90%;
+}
+
+.infoForm {
+  width: 90%;
+}
+
+.headRegister {
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: center;
+  z-index: 90;
+}
+
+.logo2 {
+  width: 20vh;
+  margin-bottom: 2vh;
+}
+
+.toAlignSignUpAndForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 97%;
+}
+
+.signUp {
+  letter-spacing: 0.5vw;
+  padding-bottom: 0.6vh;
+  text-align: center;
+  margin-top: 0.3vh;
+  font-size: 1.6em;
+
+}
+
+.underline-title {
+  background: linear-gradient(to right, rgb(156, 225, 235), rgb(3, 23, 206));
+  height: 2px;
+  margin: -1.1rem auto 0 auto;
+  width: 25vw;
+}
+
+.formRegister {
+  background: white;
+  width: 80vw;
+  border-radius: 0.7rem;
+  position: relative;
+  padding: 5% 2% 5% 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  z-index: 100;
+}
+
+.input2 {
+  width: 100%;
+  height: 4vh;
+  border-radius: 0.3rem;
+  border-bottom-style: dotted;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  text-align: left;
+  font-size: 1em;
+  display: flex;
+  padding: 1rem;
+  position: relative;
+  z-index: 50;
+  margin-bottom: 3vh;
+}
+
+.infoForm label {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.buttonsRegisterForRow {
+  display: flex;
+  justify-content: space-around;
+  width: 95%;
+  margin-top: 1.6vh;
+  z-index: 100;
+}
+
+.buttonSignUp {
+  background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  border: none;
+  border-radius: 21px;
+  box-shadow: 0 0 20px #eee;
+  cursor: pointer;
+  color: #ffffff;
+  height: 6vh;
+  margin: 0;
+  width: 15vmax;
+  font-weight: 600;
+  z-index: 100;
+}
+
+.manchaRegister {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  z-index: 0;
+}
+
+.return {
+  background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  border: none;
+  border-radius: 21px;
+  box-shadow: 0 0 20px #eee;
+  cursor: pointer;
+  color: #ffffff;
+  height: 6vh;
+  margin: 0;
+  width: 15vmax;
+  font-weight: 600;
+  z-index: 100;
+}
+
+.forgotPassword {
+  background-color: transparent;
+  border-style: none;
+  color: rgb(29, 29, 29);
+  font-weight: 700;
+}
+
+.imgForRegisterLandPage {
+  display: none;
+}
+
+#secretText {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: -1rem;
+  color: rgb(150, 7, 7);
+}
+
+#emptyInput {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.8rem;
+  color: rgb(150, 7, 7);
+}
+
+.textDisplay {
+  font-weight: 800;
+  color: #065991;
+  text-transform: uppercase;
+}
+
+.red {
+  border-color: #d41062;
+  border-width: 0.3rem;
+  border-style: solid;
+}
+
+.manchaRegisterBajo {
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+
+}
+
+.imgForHome {
+  display: none;
+}
+
+.upBackgroundHome {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 0;
+  right: 0;
+  opacity: 0.9;
+}
+
+.multiPets {
+  display: none;
+}
+
+.upperBackground2 {
+  display: none
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+
+
+
+
+  .cuerpo {
+    height: 110vh;
+    background-image: url('/assets/wallpaperHome1.913e1e1c.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .imgFooter {
+    width: 38vh;
+    display: none;
+    position: absolute;
+    top: -3vh;
+    z-index: 0;
+    animation-name: bounce;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    bottom: 70%
+  }
+
+  .mainBox {
+    background-color: #ffffff;
+    border-radius: 2vh;
+    padding: 3vw 2vw 2vw 2vw;
+    box-shadow: rgba(50, 50, 93, 0.40) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    position: relative;
+    top: 0vw;
+    left: -23vw
+  }
+
+  .login2 {
+    max-width: 85vw;
+    height: 10vh;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .input-wrapper {
+    width: 35vw;
+    height: 5vh;
+  }
+
+
+  .input1 {
+    width: 35vw;
+    height: 5vh;
+  }
+
+  .buttonSignIn {
+    width: 35vw;
+    height: 5vh;
+  }
+
+  hr {
+    border: 1.3px #81a8c9;
+    width: 10vw;
+    border-style: solid;
+  }
+
+  #circle {
+    box-shadow: rgba(50, 50, 93, 0.9) 0px 9px 27px -9px, rgba(0, 0, 0, 0.8) 0px 7px 16px -8px;
+  }
+
+  .imgForHomeLeft {
+    display: flex;
+    position: absolute;
+    z-index: 200;
+    width: 60vh;
+    right: -40vw;
+    animation-name: bounce;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    bottom: 1vw;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+  .imgForHomeRight {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    width: 50vh;
+    bottom: 2vh;
+    animation-name: bounce;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+
+  .doggy {
+    position: absolute;
+
+  }
+
+  .logo {
+    width: 30vh;
+    z-index: 100;
+    position: relative;
+    bottom: 0;
+    left: -48vh;
+  }
+
+  .upBackgroundHome {
+    display: none;
+  }
+
+  /* aqui va register */
+  .fullBodyOfRegister {
+    width: 100%;
+    height: 100vh;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(252, 250, 250);
+  }
+
+  .manchaRegister {
+    display: none;
+    left: 0;
+    top: 0;
+    width: 40vw;
+    z-index: 0;
+  }
+
+  .manchaRegisterBajo {
+    display: none;
+    width: 60vw;
+    position: absolute;
+    bottom: 0vh;
+    right: 0;
+    z-index: 0;
+
+  }
+
+  .registerBody {
+    position: absolute;
+    right: 20vh;
+    padding-top: 1vh;
+    padding-right: 1.5vw;
+    padding-left: 1.5vw;
+    padding-bottom: 3vh;
+    height: 60%;
+  }
+
+  .infoForm {
+    width: 90%;
+    height: 9vh;
+    margin-bottom: 0.2vh;
+  }
+
+  .headRegister {
+    width: 70%;
+  }
+
+  .formRegister {
+    width: 42vw;
+    height: 60vh;
+    padding: 3% 2% 4% 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    z-index: 100;
+  }
+
+  .signUp {
+    font-size: 1.3em;
+    text-transform: uppercase;
+  }
+
+  .input2 {
+    width: 100%;
+    height: 1vh;
+    font-size: 0.8em;
+    margin-bottom: 3vh;
+    padding: 1rem;
+  }
+
+
+  .buttonsRegisterForRow {
+    width: 80%;
+    margin-top: 1.6vh;
+  }
+
+  .buttonSignUp {
+    height: 5vh;
+    width: 11vmax;
+  }
+
+  .return {
+    height: 5vh;
+    width: 11vmax;
+  }
+
+
+
+  .multiPets {
+    width: 40vh;
+    display: flex;
+  }
+
+  .logo2 {
+    display: flex;
+    width: 20%;
+    position: absolute;
+    right: -10%;
+  }
+
+  .imgForRegisterLandPage {
+    display: flex;
+    position: fixed;
+    left: 0%;
+    top: 0;
+    height: 100%;
+  }
+
+  .upperBackground2 {
+    display: flex;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+  }
+
+  .underline-title {
+    background: linear-gradient(to right, rgb(156, 225, 235), rgb(3, 23, 206));
+    height: 0.5vh;
+    margin: -1.1rem auto 0 auto;
+    width: 25vw;
+  }
+
+  .infoForm label {
+    font-size: 0.8em;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+}/* /* Inicio Burger menu */
+.hamburger-menu {
+  margin-bottom: 10%;
+
+}
+
+#menu__toggle {
+  opacity: 0;
+}
+
+.menu__btn>span,
+.menu__btn>span::before,
+.menu__btn>span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: rgb(237, 67, 149);
+  transition-duration: .25s;
+
+}
+
+#menu__toggle:checked+.menu__btn>span {
+  transform: rotate(45deg);
+}
+
+.menu__btn {
+  position: fixed;
+  top: 6%;
+  left: 30px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 90;
+}
+
+.menu__btn>span::before {
+  content: '';
+  top: -8px;
+}
+
+#menu__toggle:checked+.menu__btn>span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+
+.menu__btn>span::after {
+  content: '';
+  top: 8px;
+}
+
+#menu__toggle:checked+.menu__btn>span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #252525;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+  transition-duration: .25s;
+  z-index: 80;
+}
+
+#menu__toggle:checked~.menu__box {
+  left: 0 !important;
+}
+
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: .25s;
+}
+
+.menu__item:hover {
+  background-color: #CFD8DC;
+}
+
+/* Fin burger menu */
+
+.photoForProfile {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  border-width: 0.4rem;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  object-fit: cover;
+}
+
+.allViewForProfile {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 100vh;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formProfile {
+  width: 80vw;
+  border-radius: 0.7rem;
+  position: relative;
+  padding: 0% 0% 5% 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  z-index: 8;
+  background-color: white;
+}
+
+
+.headerProfile {
+  display: flex;
+  width: 80vw;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(237, 67, 149);
+  border-radius: 0.7rem 0.7rem 0 0;
+  padding-bottom: 2vh;
+}
+
+
+.structureOfBackground {
+  width: 100%;
+
+}
+
+.backgroundIconsDown {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: 0;
+  left: 0;
+  opacity: 0.7;
+}
+
+.grandpaForProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+}
+
+.upperBackgroundProfile {
+  width: 70vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.pawBackground {
+  width: 70vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+#updatePhoto {
+  top: 1rem;
+  width: 60vw;
+  padding: 1vh;
+  border: 2px dashed rgb(255, 255, 255);
+  text-align: center;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  width: 39vw;
+  background-color: rgb(102, 1, 102);
+  font-size: 0.9rem;
+  border-style: none;
+  padding: 0.5vw 1vh 0.5vw 1vh;
+  color: rgb(255, 255, 255);
+  border-radius: 0.6vh;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+  cursor: pointer;
+}
+
+.nameForProfile {
+  font-size: 5vw;
+  text-transform: capitalize
+}
+
+.inputProfile {
+  width: 80%;
+  height: 2vh;
+  border-radius: 0.3rem;
+  border-style: dotted;
+  border-width: 0.4vh;
+  text-align: left;
+  font-size: 0.9em;
+  display: flex;
+  padding: 0.7rem;
+  position: relative;
+  z-index: 50;
+  margin-bottom: 2vh;
+}
+
+.profileFormDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.inputProfileDescription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputProfileTextArea {
+  width: 80%;
+  border-radius: 0.3rem;
+  border-style: dotted;
+  border-width: 0.4vh;
+  text-align: left;
+  font-size: 0.9em;
+  margin-bottom: 1.8vh;
+}
+
+
+#buttonSave {
+  background-color: rgb(102, 1, 102);
+  font-size: 0.9rem;
+  border-style: none;
+  padding: 1vw 2vw;
+  color: rgb(255, 255, 255);
+  border-radius: 0.6vh;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+}
+
+#buttonSave:hover {
+  background-color: rgb(199, 22, 199);
+}
+
+::-webkit-file-upload-button:hover {
+  background-color: rgb(235, 86, 17);
+}
+
+.imgForProfileLandPage {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  .formProfile {
+    width: 30vw;
+    border-radius: 0.7rem;
+    position: absolute;
+    padding: 0% 0% 5% 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-end;
+    top: -2vh;
+
+
+  }
+
+  .headerProfile {
+    display: flex;
+    width: 30vw;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(237, 67, 149);
+    border-radius: 0.7rem 0.7rem 0 0;
+    padding-bottom: 2vh;
+  }
+
+  .allViewForProfile {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100vh;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    /* 1 */
+    font: inherit;
+    /* 2 */
+    width: 15vw;
+    background-color: rgb(102, 1, 102);
+    font-size: 0.9rem;
+    border-style: none;
+    padding: 0.5vw 1vh 0.5vw 1vh;
+    color: rgb(255, 255, 255);
+    border-radius: 0.6vh;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    cursor: pointer;
+  }
+
+  #updatePhoto {
+    top: 1rem;
+    width: 22vw;
+    padding: 1vh;
+    border: 2px dashed rgb(255, 255, 255);
+    text-align: center;
+  }
+
+  .grandpaForProfile {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 10%;
+  }
+
+  .imgForProfileLandPage {
+    display: flex;
+    position: fixed;
+    right: 0%;
+    top: 0;
+    height: 100%;
+  }
+
+  .pawBackground {
+    width: 40%;
+  }
+
+  .upperBackgroundProfile {
+    display: none;
+  }
+
+  .nameForProfile {
+    font-size: 2vw;
+    text-transform: capitalize
+  }
+
+  #buttonSave {
+    background-color: rgb(102, 1, 102);
+    font-size: 0.9rem;
+    border-style: none;
+    padding: 0.6vw 2vw;
+    color: rgb(255, 255, 255);
+    border-radius: 0.6vh;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    margin-bottom: 0.6vw;
+  }
+
+
+} .fullBodyPost {
+     width: 100%;
+     overflow: hidden;
+     min-height: 100%;
+     height: 100%;
+     margin-top: 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background: rgb(255, 255, 255);
+     background-size: cover;
+ }
+
+ .likesRow {
+     display: flex;
+     gap: 1vh;
+     align-items: center;
+
+ }
+
+
+ .headerOfEachPost {
+     display: flex;
+     justify-content: space-between;
+     width: 95%;
+     margin-bottom: 2vh;
+ }
+
+ .grandpaDivForPost {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     height: max-content;
+     width: 100%;
+     margin-top: 12vh;
+ }
+
+ .upperBackgroundPost {
+     width: 70vw;
+     position: fixed;
+     top: 0;
+     right: 0;
+     z-index: 0;
+     opacity: 0.8;
+ }
+
+ .reactionsandEventsForPost {
+     display: flex;
+     width: 95%;
+     justify-content: space-between;
+ }
+
+ .reactionsandEventsForPost2 {
+     display: flex;
+     width: 95%;
+     justify-content: flex-end;
+ }
+
+ .photoForPost {
+     width: 100px;
+     height: 100px;
+     border-radius: 100%;
+     z-index: 0;
+     border-width: 0.2rem;
+     border-color: #fff;
+     border-style: solid;
+     object-fit: cover;
+ }
+
+ .buttonShowPosts {
+     width: 95%;
+     z-index: 60;
+     display: flex;
+     justify-content: center;
+ }
+
+ .carousel {
+     display: none;
+ }
+
+ .buttonShowPost2 {
+     background-image: linear-gradient(to right, #3A1C71 0%, #a644e7 51%, #711c4e 100%);
+     margin: 10px;
+     padding: 5px 15px;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;
+     box-shadow: 0 0 20px #eee;
+     border-radius: 1vh;
+     display: flex;
+     border-style: none;
+     z-index: 100;
+     width: 60vw;
+     height: 5vh;
+     align-items: center;
+     justify-content: center;
+     font-weight: 700;
+ }
+
+ .buttonPost {
+     background-image: linear-gradient(to right, #711c6d 0%, #e244e7 51%, #4b1c71 100%);
+     margin: 10px;
+     padding: 5px 15px;
+     transition: 0.5s;
+     background-size: 200% auto;
+     font-weight: 700;
+     color: white;
+     box-shadow: 0 0 20px #eee;
+     border-radius: 1vh;
+     display: flex;
+     border-style: none;
+     z-index: 100;
+     width: 60vw;
+     height: 4.4vh;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .buttonPost:hover {
+     background-position: right center;
+     /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+
+ }
+
+ .buttonShowPost2:hover {
+     background-position: right center;
+     /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+ }
+
+ .helloForPost {
+     font-size: 100%;
+     font-weight: 900;
+     z-index: 20;
+     text-transform: capitalize;
+     margin-bottom: 3vh;
+
+ }
+
+ .post h3 {
+     font-size: 100%;
+     font-weight: 700;
+ }
+
+
+ .containerEditPost {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     position: fixed;
+     top: 40vh;
+     z-index: 60;
+     background-color: white;
+     width: 85%;
+     height: 35%;
+     border-radius: 2vh 2vh 2vh 2vh;
+     padding: 0 0 2vh 0;
+     box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset
+ }
+
+ .divHeaderPost {
+     background-color: #3A1C71;
+     width: 100%;
+     height: 17vw;
+     display: flex;
+     justify-content: center;
+     color: white;
+     font-weight: 700;
+     align-items: center;
+     border-radius: 2vh 2vh 0vh 0vh;
+     margin-bottom: 2vh;
+     font-size: 3vh;
+ }
+
+ .divHeaderPostDisplayNone {
+     display: none;
+ }
+
+ .post-anteriores {
+     margin: 15px;
+     border-radius: 5px;
+     padding: 15px;
+     z-index: 1;
+     width: 80vw;
+     display: flex;
+     flex-direction: column;
+     gap: 3vh;
+     position: relative;
+ }
+
+ .textAreaPost {
+     margin: 15px;
+     z-index: 150;
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+ }
+
+ .post {
+     text-align: center;
+     margin-bottom: 5%;
+     z-index: 50;
+     display: flex;
+     width: 100%;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .buttonPostDiv {
+     display: flex;
+     width: 100%;
+     justify-content: center;
+ }
+
+ #postSelect {
+     background: transparent;
+     border-style: none;
+     width: 100%;
+     text-align: left;
+ }
+
+ #postSelect:hover {
+     background-color: #CFD8DC;
+ }
+
+
+ #post {
+     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+     border-radius: 16px;
+     height: 60%;
+     border: 0;
+     padding: 20px;
+     text-align: center;
+     z-index: 100;
+     display: flex;
+     flex-direction: column;
+     gap: 2rem;
+ }
+
+ #downBackgroundPost {
+     width: 80%;
+     left: 0;
+     bottom: 0;
+     position: fixed;
+     opacity: .8;
+     z-index: 0;
+ }
+
+
+ .prueba {
+     width: 95%;
+     margin-bottom: 1rem;
+     padding: 15px;
+     background: #d6dce3;
+     border-radius: 8px;
+     font-size: 80%;
+     font-weight: 500;
+ }
+
+ .textEditPost {
+     z-index: 200;
+     width: 85%;
+     height: 40vw;
+     border-style: solid;
+     border-color: #5ea7d8;
+     border-radius: 2vh;
+     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+     border-width: 1vh;
+     padding: 2%;
+     margin-bottom: 2vh;
+ }
+
+ #inputPost {
+     background-color: white;
+     border-radius: 5px;
+     width: 95%;
+     font-weight: bold;
+     padding: 20px;
+     border-style: dashed;
+     border-color: rgb(218, 58, 170);
+     box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+     border-width: 0.8vh;
+ }
+
+
+
+ #deletePost {
+     width: 6vh;
+     height: 6vh;
+ }
+
+ #editPost {
+     width: 6vh;
+     height: 6vh;
+ }
+
+ .likePost {
+     width: 6vh;
+     height: 6vh;
+ }
+
+ .likePost2 {
+     width: 6vh;
+     height: 6vh;
+ }
+
+ #dateOfPost,
+ #youTag {
+     font-style: italic;
+     color: gray;
+     font-size: 90%;
+ }
+
+ .iconForLikes {
+     z-index: 250;
+     width: 100%;
+ }
+
+ .numberOfLikes {
+     font-size: 100%;
+     font-weight: 700;
+     z-index: 200;
+     color: rgb(196, 4, 61);
+ }
+
+ #dateOfPost {
+     float: right;
+ }
+
+ #youTag {
+     font-weight: normal !important;
+ }
+
+ #bodyOfEachPost {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 3vh;
+     background-color: white;
+     padding: 2vh;
+     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+ }
+
+ #nameOfUserPost {
+     font-weight: bold;
+     font-size: 90%;
+     text-transform: capitalize
+ }
+
+ #buttonPost,
+ #buttonShowPost {
+     float: left;
+     margin-bottom: 10px;
+
+ }
+
+ .buttonSavePostNew {
+     display: flex;
+     z-index: 200;
+     font-size: 0.9rem;
+     border-style: none;
+     padding: 0.6vw 2vw;
+     border-radius: 0.6vh;
+     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+     margin: 0.4vw;
+     background-color: #f739a1;
+     color: white;
+     font-weight: 500;
+     width: 40%;
+     justify-content: center;
+ }
+
+ .buttonSavePostNew:hover {
+     display: flex;
+     z-index: 200;
+     font-size: 0.9rem;
+     border-style: none;
+     padding: 0.6vw 2vw;
+     border-radius: 0.6vh;
+     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+     margin: 0.4vw;
+     background-color: #f40689;
+     color: white;
+     font-weight: 500;
+     width: 40%;
+     justify-content: center;
+ }
+
+
+ .buttonCloseEditTextArea {
+     display: flex;
+     z-index: 200;
+     width: 9vmin;
+     position: fixed;
+     right: 6vw;
+     top: 39vh
+ }
+
+ .textEditPostDisplayNone {
+     display: none;
+ }
+
+ .buttonSavePostNewDisplayNone {
+     display: none;
+ }
+
+ .buttonCloseEditTextAreaDisplayNone {
+     display: none;
+ }
+
+ .upperBackgroundProfile {
+     width: 70vw;
+     position: fixed;
+     top: 0;
+     right: 0;
+ }
+
+ .pawBackgroundPost {
+     width: 35vh;
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     opacity: 0.9;
+ }
+
+ .multiAnimals {
+     bottom: 26%;
+     z-index: 1;
+     width: 30vh;
+     position: absolute;
+     margin-top: 10px;
+ }
+
+ .bannerPost {
+     display: none;
+ }
+
+ .carousel {
+     z-index: 20;
+ }
+
+ .postAreaForEdit {
+     width: 90%;
+     display: flex;
+     justify-content: center;
+ }
+
+ @media screen and (min-width: 1024px) and (orientation: landscape) {
+
+
+     #banner {
+         display: flex;
+         justify-content: center;
+         width: 100%;
+     }
+
+     .bannerPost {
+         display: block;
+         z-index: 1;
+         size: 100vw;
+     }
+
+     .upperBackgroundProfile {
+         display: none;
+     }
+
+     .pawBackgroundPost {
+         width: 40vh;
+         position: fixed;
+         bottom: 0;
+         left: 0;
+         opacity: 0.9;
+     }
+
+     .upperBackgroundPost {
+         width: 40vw;
+         position: fixed;
+         top: 0;
+         right: 0;
+         display: flex;
+         z-index: 0;
+         opacity: 0.9;
+     }
+
+     .multiAnimals {
+         bottom: 0;
+         z-index: 0;
+         width: 30vh;
+         position: absolute;
+         margin-top: 10px;
+     }
+
+     .helloForPost {
+         font-size: 2vw;
+         font-weight: 900;
+         top: 60%;
+         z-index: 20;
+         text-transform: capitalize;
+         margin-bottom: 3vh;
+
+     }
+
+     .containerEditPost {
+         width: 50%;
+     }
+
+     .divHeaderPost {
+         font-size: 2.6vh;
+     }
+
+     .buttonSavePostNew {
+         font-size: 1.2rem;
+         width: 30%;
+     }
+
+     .post {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         width: 100%
+     }
+
+
+     .buttonSavePostNew:hover {
+         font-size: 1.2rem;
+         width: 30%;
+     }
+
+     .textAreaPost {
+         width: 40vw;
+     }
+
+     .postAreaForEdit {
+         width: 40vw;
+         display: flex;
+         justify-content: center;
+     }
+
+     .buttonPost {
+         width: 30%;
+         height: 5vh;
+     }
+
+     .buttonShowPosts {
+         width: 80%;
+     }
+
+     .buttonShowPost2 {
+         background-image: linear-gradient(to right, #3A1C71 0%, #a644e7 51%, #711c4e 100%);
+         margin: 10px;
+         padding: 5px 15px;
+         transition: 0.5s;
+         background-size: 200% auto;
+         color: white;
+         box-shadow: 0 0 20px #eee;
+         border-radius: 1vh;
+         display: flex;
+         border-style: none;
+         z-index: 100;
+         width: 30vw;
+         height: 5vh;
+         align-items: center;
+         justify-content: center;
+         font-weight: 700;
+     }
+
+     .post-anteriores {
+         width: 40vw;
+         display: flex;
+         flex-direction: column;
+         gap: 3vh;
+         position: relative;
+     }
+
+     .previous-button {
+         width: 4vw;
+     }
+
+     .next-button {
+         width: 4vw;
+     }
+
+     .carousel {
+         display: flex;
+         align-items: center;
+         gap: 1vh
+     }
+
+ }

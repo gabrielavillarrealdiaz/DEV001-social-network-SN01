@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AuthErrorCodes } from '../firebase';
 import {
   submitRegister, sendEmail, saveDataFromUsers, updateInfo, changeHash,
@@ -68,7 +69,6 @@ export const viewForRegister = () => {
     const country = registerDiv.querySelector('#signUpCountry').value;
     const passwordConf = registerDiv.querySelector('#signUpPasswordConf').value;
     const textMessageSecret = registerDiv.querySelector('#secretText');
-    console.log(passwordConf);
     const passwordConfTwo = registerDiv.querySelector('#signUpPasswordConf');
     // Sección de validación de campos, contraseñas sean idénticas y que los campos no estén vacíos
     // antes de enviar el registro
@@ -91,7 +91,6 @@ export const viewForRegister = () => {
         saveDataFromUsers(name, country, usersUid, email, password);
         const currentUser = userCredential.user;
         updateInfo(currentUser, name);
-        console.log(currentUser);
         sendEmail(currentUser)
           .then(() => {
             alert('mail verification sent!');
@@ -102,10 +101,8 @@ export const viewForRegister = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
         // agregue un mensaje de que el correo ya esta en uso
         if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
-          // alert('El E-mail ya existe');
           textMessageSecret.innerHTML = 'Email already exist';
           return textMessageSecret;
         }

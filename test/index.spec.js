@@ -4,7 +4,6 @@
  *
  * @jest-environment jsdom
  */
-// importamos la funcion que vamos a testear
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -14,7 +13,7 @@ import {
   GoogleAuthProvider,
   updateProfile,
   signOut,
- // AuthErrorCodes,
+// AuthErrorCodes,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -24,6 +23,7 @@ import {
   updateDoc,
   collection,
   setDoc,
+  getUser,
   // db,,
 } from 'firebase/firestore';
 import {
@@ -40,7 +40,6 @@ import {
   savePost,
   getSavePosts,
   getPost,
-  getUser,
   functionDeleteEachPost,
   updatePost,
   updateLikes,
@@ -57,12 +56,13 @@ import {
 
 // import { submitRegister } from '../src/lib/index';
 import { viewForHome } from '../src/components/home';
-import { viewForRegister } from '../src/components/register';
+// import { viewForRegister } from '../src/components/register';
+// global.localStorage = { getItem: jest.fn(), setItem: jest.fn(), removeItem: jest.fn() };
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
 jest.mock('firebase/storage');
-jest.mock('../src/lib/index.js');
+// jest.mock('../src/lib/index.js');
 
 // Inicio testeo función submitRegister()
 describe('submitRegister', () => {
@@ -143,24 +143,22 @@ describe('forgotPassword', () => {
   it('deberia ser una función', () => {
     expect(typeof forgotPassword).toBe('function');
   });
-  it('forgotPassword llama correctamente a sendPasswordResetEmail', async () => {
+  it('forgotPassword marca cuando hay un error al llamar sendPasswordResetEmail', async () => {
     await sendPasswordResetEmail.mockImplementationOnce((auth, email) => {
-      const bodyHome = viewForHome();
-      // const textForAlert = bodyHome.querySelector('#textDisplay');
-      const buttonForgotPassword = bodyHome.querySelector('#forgotPassword');
-      const promise = forgotPassword('test@test.test');
-      buttonForgotPassword.click();
-      promise.catch((error) => {
-        expect(error.code).toBe('auth/user-not-found');
-      });
       expect(email).toBe('test@test.test');
-      // return Promise.resolve();
     });
+    const bodyHome = viewForHome();
+    const buttonForgotPassword = bodyHome.querySelector('#forgotPassword');
+    buttonForgotPassword.click();
     forgotPassword('test@test.test');
   });
+  it('forgotPassword llama  a sendPasswordResetEmail', () => {
+    forgotPassword(sendPasswordResetEmail);
+    expect(sendPasswordResetEmail).toBeCalled();
+  });
 });
+
 // test de logInHome
-// test de logInHome;
 describe('logInHome', () => {
   it('debería ser una función', () => {
     expect(typeof logInHome).toBe('function');
@@ -169,9 +167,27 @@ describe('logInHome', () => {
     signInWithEmailAndPassword.mockImplementationOnce((auth, email, password) => {
       expect(email).toBe('test@test.test');
       expect(password).toBe('123');
-      // return Promise.resolve({ user: { email, password } });
+      // await Promise.resolve()
+      //   .then(() => {
+      //     getUser();
+      //     expect(getUser).toBeCalled();
+      //   });
     });
-    logInHome('test@test.test', '123');
+
+    return logInHome('test@test.test', '123');
+  });
+  it('la respuesta de login almacena repuesta de localstorage', (done) => {
+    const bodyHome = viewForHome();
+    const button = bodyHome.querySelector('#buttonSignIn');
+    signInWithEmailAndPassword.mockResolvedValueOnce({ user: 'karlaRm' });
+    getDoc.mockResolvedValueOnce({ data: () => ({ name: 'karlaRm' }) });
+    jest.spyOn(Storage.prototype, 'setItem');
+    button.click();
+    done();
+    expect(localStorage.setItem).toHaveBeenCalled();
+    // return logInHome('test@test.test', '123').then(() => {
+    //   expect(localStorage.setItem).toHaveBeenCalled();
+    // });
   });
   it('have an alert', async () => {
     jest.spyOn(window, 'alert').mockImplementation(() => { });
@@ -180,85 +196,6 @@ describe('logInHome', () => {
       'auth/wrong-password',
     );
   });
-  it('localstorage', () => {
-    jest.spyOn(localStorage, 'setItem');
-    localStorage.setItem = jest.fn();
-    jest.spyOn(global, 'localStorage');
-
-    expect(localStorage.setItem).toHaveBeenCalled();
-    // await expect(Promise.reject(new Error('auth/wrong-password'))).rejects.toThrow(
-    //   'auth/wrong-password',
-    // );
-  });
-});
-
-// test de vista viewForHome
-describe('viewForHome', () => {
-  it('debería ser una función', () => {
-    expect(typeof logInHome).toBe('function');
-  });
-  it('Tenemos boton de login en HTML', () => {
-    const bodyHome = viewForHome();
-    const buttonSignIn = bodyHome.querySelector('#buttonSignIn');
-    expect(buttonSignIn.outerHTML).toBe('<button class="buttonSignIn" id="buttonSignIn">Sign In</button>');
-  });
-  it('Tenemos boton de register', () => {
-    const bodyHome = viewForHome();
-    const buttonSignUp = bodyHome.querySelector('#buttonRegister');
-    expect(buttonSignUp.outerHTML).toBe('<button id="buttonRegister" class="buttonRegister">Register</button>');
-  });
-  it('Tenemos img eye password', () => {
-    const bodyHome = viewForHome();
-    const imgeyepasword = bodyHome.querySelector('#eyePassword');
-    expect(imgeyepasword.outerHTML).toBe('<img class="iconoPasswordEye" id="eyePassword" src="/img/eye.png" alt="showPassword">');
-  });
-  it('img eye password muestra contraseña', () => {
-    const bodyHome = viewForHome();
-    const imgeyepasword = bodyHome.querySelector('#eyePassword');
-    const typePassword = bodyHome.querySelector('#password');
-    imgeyepasword.click();
-    if (typePassword.type === 'password') {
-      expect(typePassword.type).toBe('text');
-    }
-  });
-  it('img eye password oculta contraseña', () => {
-    const bodyHome = viewForHome();
-    const imgeyepasword = bodyHome.querySelector('#eyePassword');
-    const typePassword = bodyHome.querySelector('#password');
-    imgeyepasword.click();
-    if (typePassword.type === 'password') {
-      typePassword.type = 'text';
-    } else {
-      expect(typePassword.type).toBe('password');
-    }
-  });
-  it('Tenemos boton de forgotPassword', () => {
-    const bodyHome = viewForHome();
-    const buttonForgotPassword = bodyHome.querySelector('#forgotPassword');
-    expect(buttonForgotPassword.outerHTML).toBe('<button class="forgotPassword" id="forgotPassword">Forgot Password</button>');
-  });
-  it('Tenemos boton de loginGoogle', () => {
-    const bodyHome = viewForHome();
-    const buttonGoogleLogIn = bodyHome.querySelector('#googleIcon');
-    expect(buttonGoogleLogIn.outerHTML).toBe('<img class="iconoGoogle" id="googleIcon" src="/img/google.svg" alt="google">');
-  });
-  // POR REVISAR
-  /*
-  it('cambia de hash y retorna a profile', async () => {
-    const homeDiv = viewForHome();
-    const buttonReturnToLogin = homeDiv.querySelector('#buttonSignIn');
-    // viewForHome();
-    // console.log(window.location.hash);
-    // expect(window.location.hash).toBe('#/');
-    // const clickEvent = new Event('click');
-    buttonReturnToLogin.click();
-    getUser.mockImplementationOnce((userCredential) => {
-      expect(userCredential).toBe('abcdefg');
-      return Promise.resolve(changeHash('#/profile'));
-    });
-    getUser('abcdefg');
-  });
-  */
 });
 
 // test a logIn with Google
@@ -266,7 +203,6 @@ describe('googleLogIn', () => {
   it('debería ser una función', () => {
     expect(typeof googleLogIn).toBe('function');
   });
-  // ----------------------Inicio prueba 2 ---------------
   it('deberia llamar correctamente  signInWithPopup', () => {
     signInWithPopup.mockImplementationOnce((auth, provider) => {
       // const provider = jest.fn(new GoogleAuthProvider());
@@ -280,11 +216,20 @@ describe('googleLogIn', () => {
     googleLogIn();
     // window.localStorage.setItem('userProfile', JSON.stringify(userSnap.data()));
   });
-  // ----------------------Fin prueba 2----------------
+  it('localstorage es setItem', () => {
+    jest.spyOn(localStorage, 'setItem');
+    localStorage.setItem = jest.fn();
+
+    expect(localStorage.setItem).toBeDefined();
+  });
+  // PENDIENTE POR REVISAR
+/*   it('googleLogIn debería llamar correctamente a getUser', () => {
+    googleLogIn();
+    expect(getUser).toBeCalled();
+  }); */
 });
 
 // test función updateInfo
-
 describe('updateInfo', () => {
   it('debería ser una función', () => {
     expect(typeof updateInfo).toBe('function');
@@ -493,31 +438,3 @@ describe('updateUsers', () => {
     expect(updateDoc).toBeCalled();
   });
 });
-/* import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { submitRegister } from '../src/lib/index.js';
-
-jest.mock('firebase/auth');
-
-describe.only('submitRegister', () => {
-  it('debería ser una función', () => {
-    expect(typeof submitRegister).toBe('function');
-  });
-  it('deberia llamar correctamente userwithEmailAndPassword', () => {
-    createUserWithEmailAndPassword.mockImplementationOnce((auth, email, password) => {
-      expect(email).toBe('test@test.testo');
-      expect(password).toBe('123');
-      return Promise.resolve({ user: { email, password } });
-    });
-    submitRegister('test@test.test', '123');
-  });
-  it('deberia regresar error', () => {
-    // esto es si no esta habilitado jsdom ... sí lo tenemos habilitado.
-    global.alert = (mensaje) => { expect(mensaje).toBe('el correo electronico ya esta registrado');
-};
-    createUserWithEmailAndPassword.mockImplementationOnce((auth, email, password) => {
-      return Promise.reject({ tiene que tener un texto--como lo que espera el catch });
-    });
-
-    expect(typeof submitRegister).toBe('function');
-  });
-}); */
