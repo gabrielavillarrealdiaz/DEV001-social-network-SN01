@@ -194,7 +194,7 @@ export const viewForPost = () => {
             button.addEventListener('click', ({ target: { dataset } }) => {
               const postId = dataset.id;
               if (doc[1].id === postId) {
-                // eslint-disable-next-line no-restricted-globals, no-unused-expressions
+                // eslint-disable-next-line no-restricted-globals, no-unused-expressions, no-alert
                 confirm('Confirm delete post?') ? functionDeleteEachPost(postId) : false;
                 // eslint-disable-next-line no-restricted-globals
               }
@@ -305,7 +305,6 @@ export const viewForPost = () => {
           const errorMessage = error.message;
           // eslint-disable-next-line no-unused-expressions
           errorCode || errorMessage ? alert('there is a problem, try again') : false;
-          console.log(errorCode, errorMessage);
         });
     } else {
       changeHash('#/post');
