@@ -25,7 +25,7 @@ export const viewForProfile = () => {
   // Añade el template de viewForProfile en HTML
   profileDiv.innerHTML = `
   <section class='grandpaForProfile'>
-    <img src='./img/yello.png' id='upperBackgroundProfile' class='upperBackgroundProfile' alt='color background'>
+    <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/yello.png' id='upperBackgroundProfile' class='upperBackgroundProfile' alt='color background'>
     <div class='hamburger-menu'>
       <input id='menu__toggle' type='checkbox' />
       <label class='menu__btn' for='menu__toggle'>
@@ -66,9 +66,9 @@ export const viewForProfile = () => {
     </div>     
     </form>
     
-    <img src='./img/paw1.png' id='pawBackground' class='pawBackground' alt='paw'>
+    <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/paw1.png' id='pawBackground' class='pawBackground' alt='paw'>
   </section>
-  <img src='./img/perritosProfile.png' id='imgForProfile' class='imgForProfileLandPage'  alt='profile img'>`;
+  <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/perritosProfile.png' id='imgForProfile' class='imgForProfileLandPage'  alt='profile img'>`;
 
   // Guarda en constante sección post del menu
   const post = profileDiv.querySelector('#postSelect');

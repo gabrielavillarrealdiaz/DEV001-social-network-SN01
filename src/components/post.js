@@ -16,11 +16,11 @@ export const viewForPost = () => {
   const bodyOfPost = `
   <section class='grandpaDivForPost'>
     <div class='carousel'>
-    <img src= './img/carrusel/izq.png' id='left' class='previous-button' alt='left'>
-    <img src= './img/carrusel/bannerPrototipo2.png' id='image' class='image'  alt='ads banner'>
-    <img src= './img/carrusel/der.png' id='right' class='next-button' alt='right'>
+    <img src= 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/carrusel/izq.png' id='left' class='previous-button' alt='left'>
+    <img src= 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/carrusel/bannerPrototipo2.png' id='image' class='image'  alt='ads banner'>
+    <img src= 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/carrusel/der.png' id='right' class='next-button' alt='right'>
     </div>
-  <img src='./img/yello.png' id='upperBackgroundPost' class='upperBackgroundPost'  alt='paw background>
+  <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/yello.png' id='upperBackgroundPost' class='upperBackgroundPost'  alt='paw background>
     <header class='headerOfPost'>
       <div class='leftHeader'>
         <div class='hamburger-menu'>
@@ -53,7 +53,7 @@ export const viewForPost = () => {
     </span>
     <div id='showPost' class='post-anteriores'></div>
 
-    <img src='./img/paw1.png' id='pawBackgroundPost' class='pawBackgroundPost' alt='paw'>
+    <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/paw1.png' id='pawBackgroundPost' class='pawBackgroundPost' alt='paw'>
    </section>
 `;
   postDiv.insertAdjacentHTML('beforeend', bodyOfPost);
@@ -70,7 +70,7 @@ export const viewForPost = () => {
     changeHash('#/post');
   });
 
-  const images = ['./img/carrusel/bannerPrototipo2.png', './img/carrusel/bannerPrototipo3.png', './img/carrusel/bannerPrototipo4.png'];
+  const images = ['https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/carrusel/bannerPrototipo2.png', 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/carrusel/bannerPrototipo3.png', 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/carrusel/bannerPrototipo4.png'];
   let counter = 0;
   function carousel() {
     const back = postDiv.querySelector('.previous-button');
@@ -155,10 +155,10 @@ export const viewForPost = () => {
               </header>
               <div class='prueba' id='prueba'>${doc[0].textOfEachPost}</div> 
               <div class='reactionsandEventsForPost' id='reactionsandEventsForPost'>
-                <img src='./img/delete.png' class='deletePost' id='deletePost' data-id=${doc[1].id}>
-                <img src='./img/editButton.png' class='editPost' id='editPost' data-id=${doc[1].id}>
+                <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/delete.png' class='deletePost' id='deletePost' data-id=${doc[1].id}>
+                <img src='https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/editButton.png' class='editPost' id='editPost' data-id=${doc[1].id}>
                 <div class='likesRow'>
-                  <img src= ${doc[0].likes.includes(userProfile.user) ? './img/likePaw2.png' : './img/likePaw.png'} class='likePost' data-id=${doc[1].id}>
+                  <img src= ${doc[0].likes.includes(userProfile.user) ? 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/likePaw2.png' : 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/likePaw.png'} class='likePost' data-id=${doc[1].id}>
                   <span class='numberOfLikes'>${doc[0].likes.length}</span>
                 </div>
               </div>
@@ -177,7 +177,7 @@ export const viewForPost = () => {
             <div class='prueba'>${doc[0].textOfEachPost}</div> 
             <div class='reactionsandEventsForPost2' id='reactionsandEventsForPost'>
               <div class='likesRow'>
-                <img src= ${doc[0].likes.includes(userProfile.user) ? './img/likePaw2.png' : './img/likePaw.png'} class='likePost' data-id=${doc[1].id}>
+                <img src= ${doc[0].likes.includes(userProfile.user) ? 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/likePaw2.png' : 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/likePaw.png'} class='likePost' data-id=${doc[1].id}>
                 <span class='numberOfLikes'>${doc[0].likes.length}</span>
               </div>
             </div>
@@ -235,7 +235,7 @@ export const viewForPost = () => {
                 /*  crear boton cerrar */
 
                 const buttonCloseModal = document.createElement('img');
-                buttonCloseModal.src = './img/cerrar.png';
+                buttonCloseModal.src = 'https://raw.githubusercontent.com/gabrielavillarrealdiaz/DEV001-social-network-SN01/main/src/img/cerrar.png';
                 buttonCloseModal.classList.add('buttonCloseEditTextArea');
                 buttonCloseModal.innerText = 'close';
                 buttonCloseModal.setAttribute('id', doc[1].id);
